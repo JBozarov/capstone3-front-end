@@ -4,7 +4,6 @@ import Footer from './components/footer/Footer.jsx';
 import routes from './routes'
 import './App.css';
 import './App.sass'
-import Demo from './components/demo/Demo.jsx';
 import Admin from './components/admin/Admin.jsx';
 
 function App() {
