@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+.breadcrumb-box-single{
+   width: 70%;
+   margin: auto;
+   padding-bottom: 0;
+   background-color: white;
+   color: black;
+   margin-bottom: 40px;
+}
+
+.single-component{
+   width: 70%;
+   height: 100vh;
+   margin: auto;
+   display: flex;
+   flex-direction: row;
+
+}
+
+.carousel-container{
+   width: 60%;
+   height: 550px;
+   color: black;
+   cursor: pointer;
+}
+
+.carousel-img{
+   width: 450px;
+   height: 550px;
+}
+
+
+/* INFO CONTAINER */
+
+.info-container{
+   width: 40%;
+   height: 550px;
+   padding: 20px;
+   text-align: left;
+   box-sizing: border-box;
+}
+
+
+.sub-cont1{
+   height: 25%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: flex-start;
+}
+
+.sub-cont1 h1{
+   font-family: 'Roboto', sans-serif;
+}
+.sub-cont1 h4{
+   font-weight: 800;
+}
+.sub-cont2{
+   width: 100%;
+   height: 20%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: flex-start;
+}
+.sub-cont2-box{
+   width: 50%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   align-items: flex-start;
+}
+
+.selected-image{
+   width: 50px;
+   height: 50px;
+}
+.four-images{
+   width: 30px;
+   height: 30px;
+   cursor: pointer;
+}
+.four-images:hover{
+   transform: scale(1.4);
+}
+
+
+.sub-cont3{
+   height: 20%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: flex-start;
+}
+.sub-cont3 h5{
+   font-weight: 800;
+}
+
+.sub-cont4{
+   height: 20%;
+   font-weight: 800;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: flex-start;
+
+}
+
+
+
+.five-btns{
+   width: 220px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.size-btn{
+   width: 35px;
+   height: 30px;
+   background-color: white;
+   font-weight: 800;
+   font-size: 10px;
+   border: 0.5px solid black;
+   border-radius: 3px;
+}
+
+.size-btn:hover{
+   color: white;
+   background-color: #00ccff;
+   font-weight: 800;
+   font-size: 10px;
+}
+
+.add-to-cart-btn{
+   width: 120px;
+   height: 35px;
+   font-weight: 900;
+   color: white;
+   background-color: #ff0000;
+   border-radius: 5px;
+}
+
+
+.toastify{
+   width: 180%;
+   height: 10vh;
+   font-size: 15px;
+   border-radius: 35px;
+   text-align: center;
+   font-weight: 800;
+}

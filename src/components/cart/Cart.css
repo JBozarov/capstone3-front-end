@@ -1,0 +1,131 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+.cart-component{
+   position: relative;
+   min-height: 100vh;
+   height: 100vh;
+   width: 100%;
+   padding-top: 5vh;
+   margin: auto;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   flex-wrap: wrap;
+}
+
+.cart-items{
+   width: 50%;
+   height: 150px;
+   text-align: left;
+   font-weight: 800;
+}
+
+.single-cart-item{
+   margin-top: 20px;
+   padding: 10px;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   background-color: whitesmoke;
+}
+
+.qty-and-update{
+   width: 60%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.quantity-input{
+   width: 65px;
+   height: 30px;
+   font-size: 15px;
+}
+.right-box{
+   width: 60%;
+   padding: 0px 20px;
+   padding-top: 10px;
+   text-align: left;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+
+
+.cart-image{
+   width: 200px;
+   height: 230px;
+}
+
+
+.payment{
+   width: 20%;
+   height: 75vh;
+   padding: 10px;
+   margin-top: 15px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   background-color: whitesmoke;
+}
+
+.payment-box-1{
+   width: 100%;
+   padding: 10px;
+   height: 50px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   background-color: black;
+   color: white;
+   font-weight: 900;
+   cursor: pointer;
+}
+
+.paypal-img{
+   width: 80px;
+}
+.order-summary{
+   width: 100%;
+   height: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+
+}
+.order-summary-line{
+   width: 90%;
+   margin: auto;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.promo-code-input{
+   width: 90%;
+   height: 35px;
+   margin: auto;
+   font-size: 18px;
+   padding-left: 10px;
+}
+
+.cart-toastify{
+   width: 150%;
+   height: 10vh;
+   font-size: 15px;
+   border-radius: 35px;
+   text-align: center;
+   font-weight: 800;
+}
+
+.empty-cart{
+   margin-top: 100px;
+   font-family: 'Poiret One', cursive; 
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}

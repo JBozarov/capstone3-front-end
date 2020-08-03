@@ -1,0 +1,35 @@
+.mainDesktopDropdownMenu {
+   width: 100%;
+   margin: auto;
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   min-width: 100vw;
+   background-color: whitesmoke;
+   opacity: 0.98;
+   margin-left: 38%;
+   color: #000000;
+   top: 100%;
+   left: -37.5%;
+   z-index: 100;
+ }
+
+ .desktopDropdownLinksContainer {
+   width: 80%;
+   height: 80%;
+   margin: auto;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: flex-start;
+   padding: 1em 6em;
+ }
+
+ .section-title{
+    margin-bottom: 20px;
+ }
+ .dropDownLinks{
+    cursor: pointer;
+ }

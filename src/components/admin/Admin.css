@@ -1,0 +1,56 @@
+
+.admin-component{
+   width: 100%;
+   text-align: left;
+   display: flex;
+   justify-content: center;
+}
+
+.admin-cart-image{
+   width: 40px;
+   height: 30px;
+   margin: auto;
+}
+
+.table-one-one{
+   width: 70%;
+   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+   border-collapse: collapse;
+}
+
+.table-one td, .table-one th {
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.table-one tr:nth-child(even){background-color: #f2f2f2;}
+
+.table-one tr:hover {background-color: #ddd;}
+
+.table-one th {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: left;
+  background-color: #1aa3ff;
+  color: white;
+}
+
+.table-one thead {
+   height: 50px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   padding-left: 20px;
+   text-align: left;
+   background-color: #1aa3ff;
+   color: white;
+   font-weight: 800;
+   font-size: large;
+ }
+
+ .modal-line{
+   width: 80%;
+   display: flex;
+   justify-content: space-evenly;
+   font-size: 15px;
+ }

@@ -1,0 +1,25 @@
+.dashboard-image{
+   width: 80%;
+   height: 55vh;
+   border-radius: 2px;
+   cursor: pointer;
+}
+
+
+.subscribe-input{
+   width: 30%;
+   margin: 25px;
+   margin-top: 50px;
+   height: 36px;
+   padding-left: 7px;
+   font-size: 18px;
+}
+
+.subscribe-btn{
+   width: 20%;
+   margin: 25px;
+   margin-top: 15px;
+   height: 36px;
+   padding-left: 10px;
+   font-size: 20px;
+}
