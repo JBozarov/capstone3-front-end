@@ -43,10 +43,11 @@ const Admin = () => {
    const [tPrice, setPrice] = useState(0)
    const [tQuantity, setQuantity] = useState(0)
    const [ isOpen, setIsOpen ] = useState(false)
-   const [isAddProductModelOpen, setIsAddProductModelOpen] = useState(false); 
+   const [isAddProductModelOpen, setIsAddProductModelOpen] = useState(false);
+   
 
   
-
+   const [serialNumber, setSerialNumber] = useState('')
    const [productName, setProductName] = useState('')
    const [category, setCategory] = useState('')
    const [imgUrl, setImgUrl] = useState('')
@@ -61,7 +62,7 @@ const Admin = () => {
    },[])
 
    const getAllProducts = () => {
-      axios.get(`http://localhost:8080/products`)
+      axios.get(`http://34.221.195.5/products`)
       .then(response => {
          console.log("line 66 ", response.data)
          setData(response.data)
@@ -77,15 +78,30 @@ const Admin = () => {
       setPrice(temp.price)
       setQuantity(temp.quantity)
       setIsOpen(true)
+      setProductName(temp.productName)
+      setSerialNumber(temp.serialNumber)
    }
 
    // Submit button 
    const submit = () => {
-      dispatch(editItem([tId, tPrice, tQuantity]))
-      setID(0)
-      setPrice(0)
-      setQuantity(0)
-      setIsOpen(false)
+      if (tQuantity<1) {
+         window.alert(`Please change quantity, you entered ${tQuantity}`)
+      } else {
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, {quantity: tQuantity})
+      .then(res => {
+         getAllProducts(); 
+         setID(0)
+         setPrice(0)
+         setQuantity(0)
+         setIsOpen(false)
+      })
+      .catch(err => {
+         console.log(err)
+      })
+      }
+      
+      //dispatch(editItem([tId, tPrice, tQuantity]))
+      
    }
 
    // Delete button 
@@ -97,7 +113,6 @@ const Admin = () => {
 
    // Post request
    const addProduct = () => {
-      
       const body = {
          productName: productName,
          quantity: tQuantity
@@ -125,8 +140,9 @@ const Admin = () => {
       <button onClick={()=>openAddProductModel()} >Add new product</button>
       <div className='admin-component'>
       <Modal isOpen={isOpen} style={modalStyle}>
-         <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p>
-         <p className='modal-line' >Change Quantity<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => handleQuantity(e)}  /></p>
+        {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
+         <h2>{productName}</h2>
+         <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => handleQuantity(e)}  /></p>
          <p className='modal-line' >
             <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
             <Button variant="outline-dark" size="lg" onClick={() => setIsOpen(false)} >CANCEL</Button>{' '}
@@ -157,7 +173,7 @@ const Admin = () => {
                   <th>Category</th>
                   <th>Image</th>
                   <th>Edit</th>
-                  <th>Edit</th>
+                  <th>Delete</th>
                </tr>
          {data.length>0 && data.map((item, i) => (
                <tr key={i} className="" >
@@ -168,7 +184,7 @@ const Admin = () => {
                   <td>{item.quantity}</td>
                   <td>{item.category}</td>
                   <td><img src={item.imageUrl} className="admin-cart-image" /></td>
-                  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleEdit(i)} >Edit</Button></td>
+                  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleEdit(i)} >Add Quantity</Button></td>
                   <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td>
                </tr> 
                ))}  
