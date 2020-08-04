@@ -14,9 +14,9 @@ const Header = props => {
   let qtyCount = cart.reduce((a, b) => a + b.cartQuantity, 0);
   const dispatch = useDispatch();  
 
-  const toggleMenu = () => setDropdownActive(!dropdownActive)
-  const enterMenu = () => setDropdownActive(false)
-  const leaveMenu = () => setDropdownActive(true)
+  const toggleMenu = () => setDropdownActive(!dropdownActive) // always 
+  const enterMenu = () => setDropdownActive(true) // original false 
+  const leaveMenu = () => setDropdownActive(true) // original true
 console.log(props)
  console.log("header path ", props.location)
   const handleChange = e => {
@@ -36,12 +36,13 @@ console.log(props)
                   </div>
                   <div className="lower-box" >
                      <ul className="nav-bar"  >
-                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>MEN'S</li>
+                    {/*    <li onClick={toggleMenu} onMouseEnter={enterMenu}>MEN'S</li>
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>WOMEN'S</li>
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>KID'S</li>
-                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li>
+    <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li> */}
                      </ul>
-                     {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null } 
+                   {/*  {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null } */}
+                     {<input className='search-input' value={searchInput} placeholder="Search" onChange={e => handleChange(e)} /> } 
                   </div>
                </div>
                <div className="desktopDropdownInstanceContainer">

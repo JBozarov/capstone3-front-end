@@ -9,7 +9,7 @@ import Admin from './components/admin/Admin.jsx';
 function App() {
   return (
     <div className="App">
-      <div className="temp-header" ></div>
+      <Header />
       <Admin />
     </div>
   );
