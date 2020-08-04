@@ -1,14 +1,21 @@
 // import data from '../../assets/data'
-import { SEARCH_DATA, PURCHAE_MADE, EDIT_ITEM, DELETE_ITEM, API_CALL_GET_ALL_DATA } from './actionTypes'
+import { SEARCH_DATA, PURCHAE_MADE, EDIT_ITEM, DELETE_ITEM, GET_ALL_PRODUCTS } from './actionTypes'
+import axios from 'axios'
 
 const data = []; 
 const originalState = []; 
 const initialState = data
- 
-export const getALlData = data => {
+
+
+
+export const getAllData =  (data) => {
+      //const products = await axios.get(`http://34.221.195.5/products`)
+      // let results = axios.get('http://localhost:8080/products')
+      //      .then(response => response.data)
+      //      .catch(error => console.log("data Reducer line 15 fetching error ", error));
    return {
-      type: API_CALL_GET_ALL_DATA, 
-      payload: data
+       type: GET_ALL_PRODUCTS, 
+       payload: data
    }
 }
 
@@ -84,7 +91,7 @@ const dataReducer = (state = initialState, action ) => {
          let deletedItemState = state.filter(product => product.id !== payload)
          return [...deletedItemState]
       }
-      case API_CALL_GET_ALL_DATA : {
+      case GET_ALL_PRODUCTS : {
          console.log("made api call ", payload)
          state = [...payload]; 
          //originalState = state.slice(); 

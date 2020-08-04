@@ -6,12 +6,13 @@ import './App.css';
 import './App.sass'
 import Admin from './components/admin/Admin.jsx';
 import Products from './components/products/Products.jsx';
+import AdminDetails from './components/adminDetails/AdminDetails';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      {routes}
+      <Admin />
     </div>
   );
 }
