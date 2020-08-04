@@ -55,7 +55,7 @@ const Admin = () => {
 
    const handlePrice = e => setPrice(e.target.value)
    const handleQuantity = e => setQuantity(e.target.value)
-   //const url = 'http://34.221.195.5/products'; 
+   
 
 
    useEffect (() => {
@@ -64,7 +64,7 @@ const Admin = () => {
 
    const getAllProducts = () => {
       axios.get(`http://34.221.195.5/products`)
-      //axios.get('http//localhost:8080/products')
+      //axios.get('http://localhost:8080/products')
       .then(response => {
          console.log("line 66 ", response.data)
          dispatch(getALlData(response.data))
@@ -86,10 +86,8 @@ const Admin = () => {
 
    // Submit button 
    const submit = () => {
-      if (tQuantity<1) {
-         window.alert(`Please change quantity, you entered ${tQuantity}`)
-      } else {
       axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, {quantity: tQuantity})
+      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: tQuantity})
       .then(res => {
          getAllProducts(); 
          setID(0)
@@ -98,9 +96,10 @@ const Admin = () => {
          setIsOpen(false)
       })
       .catch(err => {
+         setIsOpen(false)
          console.log(err)
       })
-      }
+      
       
       //dispatch(editItem([tId, tPrice, tQuantity]))
       
@@ -120,6 +119,7 @@ const Admin = () => {
          quantity: tQuantity
       }
       axios.post(`http://34.221.195.5/products`, body) 
+      //axios.post(`http://localhost:8080/products`, body) 
       .then(res => {
          setProductName("")
          setQuantity("")
@@ -127,6 +127,7 @@ const Admin = () => {
          setIsAddProductModelOpen(false)
       })
       .catch(err => {
+         setIsAddProductModelOpen(false)
          console.log("error is ", err)
       })
    }
