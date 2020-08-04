@@ -35,10 +35,10 @@ const Header = props => {
                     </div> */}
                   </div>
                   <div className="lower-box" >
-                   {/*  <ul className="nav-bar"  >
+                       {/* <ul className="nav-bar"  >
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>MEN'S</li>
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>WOMEN'S</li>
-                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>KID'S</li>
+                  <li onClick={toggleMenu} onMouseEnter={enterMenu}>KID'S</li> 
     <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li> 
                      </ul>
                    {/*  {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null } */}
