@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { editItem, deleteItem } from '../../redux/reducers/dataReducer'
+import { editItem, deleteItem, getAllProducts, getALlData } from '../../redux/reducers/dataReducer'
 import Modal from "react-modal";
 import './Admin.css'
 import axios from 'axios'
@@ -36,8 +36,8 @@ const modelAddProductStyle = {
 
 
 const Admin = () => {
-   //const data = useSelector(state => state.dataReducer)
-   const [data, setData] = useState([])
+   const data = useSelector(state => state.dataReducer)
+   //const [data, setData] = useState([])
    const dispatch = useDispatch(); 
    const [tId, setID] = useState(0)
    const [tPrice, setPrice] = useState(0)
@@ -62,10 +62,10 @@ const Admin = () => {
    },[])
 
    const getAllProducts = () => {
-      axios.get(`http://34.221.195.5/products`)
+      axios.get(`http://localhost:8080/products`)
       .then(response => {
          console.log("line 66 ", response.data)
-         setData(response.data)
+         dispatch(getALlData(response.data))
       })
       .catch(error => {
          console.log("Fetch data error is ", error)
@@ -87,7 +87,7 @@ const Admin = () => {
       if (tQuantity<1) {
          window.alert(`Please change quantity, you entered ${tQuantity}`)
       } else {
-      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, {quantity: tQuantity})
+      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: tQuantity})
       .then(res => {
          getAllProducts(); 
          setID(0)
@@ -117,7 +117,7 @@ const Admin = () => {
          productName: productName,
          quantity: tQuantity
       }
-      axios.post(`http://34.221.195.5/products`, body) 
+      axios.post(`http://localhost:8080/products`, body) 
       .then(res => {
          setProductName("")
          setQuantity("")
@@ -155,7 +155,7 @@ const Admin = () => {
       <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => handleQty(e)}/></p>
       <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => handlePrice(e)}/></p>
       <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" /></p>
-      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p>
+      {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
       <p className='modal-line' >
          <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
          <Button variant="outline-dark" size="lg" onClick={() => setIsAddProductModelOpen(false)} >CANCEL</Button>{' '}
@@ -171,9 +171,9 @@ const Admin = () => {
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Category</th>
-                  <th>Image</th>
+                  {/*<th>Image</th> */}
                   <th>Edit</th>
-                  <th>Delete</th>
+                  {/* <th>Delete</th> */}
                </tr>
          {data.length>0 && data.map((item, i) => (
                <tr key={i} className="" >
@@ -183,9 +183,9 @@ const Admin = () => {
                   <td>{item.price}</td>
                   <td>{item.quantity}</td>
                   <td>{item.category}</td>
-                  <td><img src={item.imageUrl} className="admin-cart-image" /></td>
+                {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
                   <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleEdit(i)} >Add Quantity</Button></td>
-                  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td>
+                {/*  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td> */}
                </tr> 
                ))}  
             <tfoot><td colSpan='9'></td></tfoot>
