@@ -5,12 +5,13 @@ import routes from './routes'
 import './App.css';
 import './App.sass'
 import Admin from './components/admin/Admin.jsx';
+import Products from './components/products/Products.jsx';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Admin />
+      {routes}
     </div>
   );
 }

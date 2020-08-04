@@ -55,8 +55,10 @@ const Admin = () => {
 
    const handlePrice = e => setPrice(e.target.value)
    const handleQuantity = e => setQuantity(e.target.value)
+   
 
 
+<<<<<<< HEAD
    useEffect(() => {
       getAllProducts();
    }, [])
@@ -70,6 +72,22 @@ const Admin = () => {
          .catch(error => {
             console.log("Fetch data error is ", error)
          })
+=======
+   useEffect (() => {
+      getAllProducts(); 
+   },[])
+
+   const getAllProducts = () => {
+      axios.get(`http://34.221.195.5/products`)
+      //axios.get('http://localhost:8080/products')
+      .then(response => {
+         console.log("line 66 ", response.data)
+         dispatch(getALlData(response.data))
+      })
+      .catch(error => {
+         console.log("Fetch data error is ", error)
+      })
+>>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
    }
    // Edit button 
    const handleEdit = ind => {
@@ -84,6 +102,7 @@ const Admin = () => {
 
    // Submit button 
    const submit = () => {
+<<<<<<< HEAD
       if (tQuantity < 1) {
          window.alert(`Please change quantity, you entered ${tQuantity}`)
       } else {
@@ -100,6 +119,23 @@ const Admin = () => {
             })
       }
 
+=======
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, {quantity: tQuantity})
+      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: tQuantity})
+      .then(res => {
+         getAllProducts(); 
+         setID(0)
+         setPrice(0)
+         setQuantity(0)
+         setIsOpen(false)
+      })
+      .catch(err => {
+         setIsOpen(false)
+         console.log(err)
+      })
+      
+      
+>>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
       //dispatch(editItem([tId, tPrice, tQuantity]))
 
    }
@@ -117,6 +153,7 @@ const Admin = () => {
          productName: productName,
          quantity: tQuantity
       }
+<<<<<<< HEAD
       axios.post(`http://localhost:8080/products`, body)
          .then(res => {
             setProductName("")
@@ -127,16 +164,27 @@ const Admin = () => {
          .catch(err => {
             console.log("error is ", err)
          })
+=======
+      axios.post(`http://34.221.195.5/products`, body) 
+      //axios.post(`http://localhost:8080/products`, body) 
+      .then(res => {
+         setProductName("")
+         setQuantity("")
+         getAllProducts(); 
+         setIsAddProductModelOpen(false)
+      })
+      .catch(err => {
+         setIsAddProductModelOpen(false)
+         console.log("error is ", err)
+      })
+>>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
    }
-
-
-   const handleQty = e => setQuantity(e.target.value)
-   const handleName = e => setProductName(e.target.value)
 
    // Add new product button 
    const openAddProductModel = () => setIsAddProductModelOpen(true);
    return (
       <div  >
+<<<<<<< HEAD
          <button onClick={() => openAddProductModel()} >Add new product</button>
          <div className='admin-component'>
             <Modal isOpen={isOpen} style={modalStyle}>
@@ -164,6 +212,35 @@ const Admin = () => {
 
             <table className='table-one' >
                <thead><td colSpan="9">INVENTORY</td></thead>
+=======
+      <button onClick={()=>openAddProductModel()} >Add new product</button>
+      <div className='admin-component'>
+      <Modal isOpen={isOpen} style={modalStyle}>
+        {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
+         <h2>{productName}</h2>
+         <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => handleQuantity(e)}  /></p>
+         <p className='modal-line' >
+            <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
+            <Button variant="outline-dark" size="lg" onClick={() => setIsOpen(false)} >CANCEL</Button>{' '}
+         </p> 
+      </Modal>
+
+      <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
+      <h2>Adding new product to inventory</h2>
+      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
+      <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p>
+      <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => handlePrice(e)}/></p>
+      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" /></p>
+      {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
+      <p className='modal-line' >
+         <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
+         <Button variant="outline-dark" size="lg" onClick={() => setIsAddProductModelOpen(false)} >CANCEL</Button>{' '}
+      </p> 
+      </Modal>
+
+         <table className='table-one' >
+            <thead><td colSpan="9">INVENTORY</td></thead>
+>>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
                <tr>
                   <th>ID</th>
                   <th>Product Name</th>

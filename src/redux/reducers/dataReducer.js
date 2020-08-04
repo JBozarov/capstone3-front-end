@@ -1,4 +1,4 @@
-//import data from '../../assets/data'
+// import data from '../../assets/data'
 import { SEARCH_DATA, PURCHAE_MADE, EDIT_ITEM, DELETE_ITEM, API_CALL_GET_ALL_DATA } from './actionTypes'
 
 const data = []; 
@@ -85,7 +85,7 @@ const dataReducer = (state = initialState, action ) => {
          return [...deletedItemState]
       }
       case API_CALL_GET_ALL_DATA : {
-         console.log("REDUCER ", payload)
+         console.log("made api call ", payload)
          state = [...payload]; 
          //originalState = state.slice(); 
          return state; 
