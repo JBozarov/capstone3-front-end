@@ -62,7 +62,7 @@ const Admin = () => {
    },[])
 
    const getAllProducts = () => {
-      axios.get(`http://localhost:8080/products`)
+      axios.get(`http://34.221.195.5/products`)
       .then(response => {
          console.log("line 66 ", response.data)
          dispatch(getALlData(response.data))
@@ -87,7 +87,7 @@ const Admin = () => {
       if (tQuantity<1) {
          window.alert(`Please change quantity, you entered ${tQuantity}`)
       } else {
-      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: tQuantity})
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, {quantity: tQuantity})
       .then(res => {
          getAllProducts(); 
          setID(0)
@@ -117,7 +117,7 @@ const Admin = () => {
          productName: productName,
          quantity: tQuantity
       }
-      axios.post(`http://localhost:8080/products`, body) 
+      axios.post(`http://34.221.195.5/products`, body) 
       .then(res => {
          setProductName("")
          setQuantity("")

@@ -2,6 +2,7 @@
 import { SEARCH_DATA, PURCHAE_MADE, EDIT_ITEM, DELETE_ITEM, API_CALL_GET_ALL_DATA } from './actionTypes'
 
 const data = []; 
+const originalState = []; 
 const initialState = data
  
 export const getALlData = data => {
@@ -47,7 +48,7 @@ const dataReducer = (state = initialState, action ) => {
       case SEARCH_DATA : {
          console.log(data)
          console.log(initialState)
-         let filtered = state.filter(function(product, index) {
+         let filtered = originalState.filter(function(product, index) {
            {/* if (product.name.toLowerCase().includes(payload.toLowerCase()) || product.price<payload || product.serial === payload){ */}
            if (product.productName.includes(payload.toLowerCase())) {
               console.log('payload is ', payload)
@@ -86,6 +87,7 @@ const dataReducer = (state = initialState, action ) => {
       case API_CALL_GET_ALL_DATA : {
          console.log("REDUCER ", payload)
          state = [...payload]; 
+         //originalState = state.slice(); 
          return state; 
       }
       default : return state; 
