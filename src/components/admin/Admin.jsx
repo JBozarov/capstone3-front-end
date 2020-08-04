@@ -55,14 +55,16 @@ const Admin = () => {
 
    const handlePrice = e => setPrice(e.target.value)
    const handleQuantity = e => setQuantity(e.target.value)
+   //const url = 'http://34.221.195.5/products'; 
 
 
-   useEffect ( () => {
+   useEffect (() => {
       getAllProducts(); 
    },[])
 
    const getAllProducts = () => {
       axios.get(`http://34.221.195.5/products`)
+      //axios.get('http//localhost:8080/products')
       .then(response => {
          console.log("line 66 ", response.data)
          dispatch(getALlData(response.data))
@@ -129,10 +131,6 @@ const Admin = () => {
       })
    }
 
-
-   const handleQty = e => setQuantity(e.target.value)
-   const handleName = e => setProductName(e.target.value)
-
    // Add new product button 
    const openAddProductModel = () => setIsAddProductModelOpen(true); 
    return (
@@ -151,8 +149,8 @@ const Admin = () => {
 
       <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
       <h2>Adding new product to inventory</h2>
-      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => handleName(e)} /></p>
-      <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => handleQty(e)}/></p>
+      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
+      <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p>
       <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => handlePrice(e)}/></p>
       <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" /></p>
       {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
