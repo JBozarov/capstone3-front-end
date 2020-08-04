@@ -7,8 +7,9 @@ import { useSelector, connect } from 'react-redux'
 
 const Products = (props) => {
 
-   const localData = useSelector(state => state.dataReducer)
-   console.log(localData)
+   //const localData = useSelector(state => state.dataReducer)
+   const data = useSelector(state => state.dataReducer)
+   console.log(data)
    console.log(props)
    
 
@@ -23,7 +24,7 @@ const Products = (props) => {
          </div>
 
          <div className='product-container'  >
-         {localData.length>0 && localData.map((item, i) => (
+         {data.length>0 && data.map((item, i) => (
             <div key={i} className="product-container-box" >
             <Card style={{ width: '25rem', height: '40rem', border: 'none' }}>
                   <img src={item.images[0]} className="card-image" />
