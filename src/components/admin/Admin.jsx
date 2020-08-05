@@ -41,7 +41,7 @@ const Admin = () => {
    //const [data, setData] = useState([])
    const dispatch = useDispatch();
    const [tId, setID] = useState(0)
-   
+
    const [tQuantity, setQuantity] = useState(0)
    const [isOpen, setIsOpen] = useState(false)
    const [isAddProductModelOpen, setIsAddProductModelOpen] = useState(false);
@@ -54,7 +54,7 @@ const Admin = () => {
    const [price, setPrice] = useState(0)
    const [category, setCategory] = useState('')
    const [imgUrl, setImgUrl] = useState('')
-   
+
 
 
    useEffect(() => {
@@ -62,10 +62,11 @@ const Admin = () => {
    }, [])
 
    const getAllProducts = () => {
-      axios.get(`http://localhost:8080/products`)
+      axios.get(`http://34.221.195.5/products`)
+         //axios.get('http://localhost:8080/products')
          .then(response => {
             console.log("line 66 ", response.data)
-            dispatch(getALlData(response.data))
+            dispatch(getAllData(response.data))
          })
          .catch(error => {
             console.log("Fetch data error is ", error)
@@ -84,47 +85,23 @@ const Admin = () => {
 
    // Submit button 
    const submit = () => {
-<<<<<<< HEAD
-      if (tQuantity < 1) {
-         window.alert(`Please change quantity, you entered ${tQuantity}`)
-      } else {
-         axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, { quantity: tQuantity })
-            .then(res => {
-               getAllProducts();
-               setID(0)
-               setPrice(0)
-               setQuantity(0)
-               setIsOpen(false)
-            })
-            .catch(err => {
-               console.log(err)
-            })
-      }
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, { quantity: tQuantity })
+         //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: tQuantity})
+         .then(res => {
+            getAllProducts();
+            setID(0)
+            setPrice(0)
+            setQuantity(0)
+            setIsOpen(false)
+         })
+         .catch(err => {
+            setIsOpen(false)
+            console.log(err)
+         })
 
-=======
-      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, {quantity: tQuantity})
-      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: tQuantity})
-      .then(res => {
-         getAllProducts(); 
-         setID(0)
-         setPrice(0)
-         setQuantity(0)
-         setIsOpen(false)
-      })
-      .catch(err => {
-         setIsOpen(false)
-         console.log(err)
-      })
-      
-      
-<<<<<<< HEAD
->>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
-      //dispatch(editItem([tId, tPrice, tQuantity]))
 
-=======
       //dispatch(editItem([tId, price, tQuantity]))
-      
->>>>>>> 56cc595792ed11fca89659615000ac0bfde6d885
+
    }
 
    // Delete button 
@@ -143,9 +120,9 @@ const Admin = () => {
          quantity: tQuantity,
          category: category
       }
-<<<<<<< HEAD
-<<<<<<< HEAD
-      axios.post(`http://localhost:8080/products`, body)
+      console.log(body)
+      axios.post(`http://34.221.195.5/products`, body)
+         //axios.post(`http://localhost:8080/products`, body) 
          .then(res => {
             setProductName("")
             setQuantity("")
@@ -153,38 +130,21 @@ const Admin = () => {
             setIsAddProductModelOpen(false)
          })
          .catch(err => {
+            setIsAddProductModelOpen(false)
             console.log("error is ", err)
          })
-=======
-=======
-      console.log(body)
->>>>>>> 56cc595792ed11fca89659615000ac0bfde6d885
-      axios.post(`http://34.221.195.5/products`, body) 
-      //axios.post(`http://localhost:8080/products`, body) 
-      .then(res => {
-         setProductName("")
-         setQuantity("")
-         getAllProducts(); 
-         setIsAddProductModelOpen(false)
-      })
-      .catch(err => {
-         setIsAddProductModelOpen(false)
-         console.log("error is ", err)
-      })
->>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
    }
 
    // Add new product button 
    const openAddProductModel = () => setIsAddProductModelOpen(true);
    return (
       <div  >
-<<<<<<< HEAD
          <button onClick={() => openAddProductModel()} >Add new product</button>
          <div className='admin-component'>
             <Modal isOpen={isOpen} style={modalStyle}>
                {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
                <h2>{productName}</h2>
-               <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => handleQuantity(e)} /></p>
+               <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => setQuantity(e.target.value)} /></p>
                <p className='modal-line' >
                   <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
                   <Button variant="outline-dark" size="lg" onClick={() => setIsOpen(false)} >CANCEL</Button>{' '}
@@ -193,10 +153,11 @@ const Admin = () => {
 
             <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
                <h2>Adding new product to inventory</h2>
-               <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => handleName(e)} /></p>
-               <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => handleQty(e)} /></p>
-               <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => handlePrice(e)} /></p>
-               <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" /></p>
+               <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
+               <p className='modal-line' ><input type='textarea' className='medal-input' placeholder="Description" onChange={e => setDescription(e.target.value)} /></p>
+               <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => setPrice(e.target.value)} /></p>
+               <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)} /></p>
+               <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" onChange={e => setCategory(e.target.value)} /></p>
                {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
                <p className='modal-line' >
                   <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
@@ -206,36 +167,6 @@ const Admin = () => {
 
             <table className='table-one' >
                <thead><td colSpan="9">INVENTORY</td></thead>
-=======
-      <button onClick={()=>openAddProductModel()} >Add new product</button>
-      <div className='admin-component'>
-      <Modal isOpen={isOpen} style={modalStyle}>
-        {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
-         <h2>{productName}</h2>
-         <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => setQuantity(e.target.value)}  /></p>
-         <p className='modal-line' >
-            <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
-            <Button variant="outline-dark" size="lg" onClick={() => setIsOpen(false)} >CANCEL</Button>{' '}
-         </p> 
-      </Modal>
-
-      <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
-      <h2>Adding new product to inventory</h2>
-      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
-      <p className='modal-line' ><input type='textarea' className='medal-input' placeholder="Description" onChange={e => setDescription(e.target.value)} /></p>
-      <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => setPrice(e.target.value)}/></p>
-      <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p>
-      <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" onChange={e => setCategory(e.target.value)} /></p>
-      {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
-      <p className='modal-line' >
-         <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
-         <Button variant="outline-dark" size="lg" onClick={() => setIsAddProductModelOpen(false)} >CANCEL</Button>{' '}
-      </p> 
-      </Modal>
-
-         <table className='table-one' >
-            <thead><td colSpan="9">INVENTORY</td></thead>
->>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
                <tr>
                   <th>ID</th>
                   <th>Product Name</th>
@@ -247,11 +178,11 @@ const Admin = () => {
                   {/*<th>Image</th> */}
                   <th>Edit</th>
                </tr>
-<<<<<<< HEAD
                {data.length > 0 && data.map((item, i) => (
                   <tr key={i} className="" >
                      <td>{i + 1}</td>
-                     <td>{item.productName}</td>
+                     <td> <Link to={`/admin/${item.serialNumber}`} style={{ width: '100%' }} > {item.productName}</Link></td>
+                     <td>{item.description}</td>
                      <td>{item.serialNumber}</td>
                      <td>{item.price}</td>
                      <td>{item.quantity}</td>
@@ -265,26 +196,6 @@ const Admin = () => {
             </table>
 
          </div>
-=======
-         {data.length>0 && data.map((item, i) => (
-               <tr key={i} className="" >
-                  <td>{i+1}</td>
-                  <td> <Link to={`/admin/${item.serialNumber}`} style={{width: '100%'}} > {item.productName}</Link></td>
-                  <td>{item.description}</td>
-                  <td>{item.serialNumber}</td>
-                  <td>{item.price}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.category}</td>
-                {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
-                  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleEdit(i)} >Add Quantity</Button></td>
-                {/*  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td> */}
-               </tr> 
-               ))}  
-            <tfoot><td colSpan='9'></td></tfoot>
-         </table>
-         
-      </div>
->>>>>>> 56cc595792ed11fca89659615000ac0bfde6d885
 
       </div>
    )
@@ -292,4 +203,4 @@ const Admin = () => {
 
 
 
-export default withRouter(Admin); 
+export default withRouter(Admin);
