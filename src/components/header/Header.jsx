@@ -15,7 +15,7 @@ const Header = props => {
   const dispatch = useDispatch();  
 
   const toggleMenu = () => setDropdownActive(!dropdownActive) 
-  const enterMenu = () => setDropdownActive(false)  
+  const enterMenu = () => setDropdownActive(true)  
   const leaveMenu = () => setDropdownActive(true) 
   console.log(props)
   console.log("header path ", props.location)
@@ -28,15 +28,15 @@ const Header = props => {
             <div className="navBarContainer" >
                <div className="topNav">
                   <div className="upper-box" >
-                    {/* <h5>Contact Us</h5>
+                    <h5>Contact Us</h5>
                      {props.location.pathname === '/admin' ? <Link to='/'><h5>Log out</h5></Link> : <Link to='/admin'><h5>Admin login</h5></Link> }
                      <div className={qtyCount ? 'cart-has-item' : null}>
                         <Link to='/cart'><h5>Cart({qtyCount})</h5> </Link>
-                    </div> */}
+                    </div> 
                   </div>
                   <div className="lower-box" >
-                       {/* <ul className="nav-bar"  >
-                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>MEN'S</li>
+                        <ul className="nav-bar"  >
+                        <Link to='/tshirts'><li onClick={toggleMenu} onMouseEnter={enterMenu}>PRODUCTS</li></Link>
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>WOMEN'S</li>
                   <li onClick={toggleMenu} onMouseEnter={enterMenu}>KID'S</li> 
     <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li> 

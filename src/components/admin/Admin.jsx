@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, withRouter, Route, Router } from 'react-router-dom'
 import { editItem, deleteItem, getAllData } from '../../redux/reducers/dataReducer'
+import { Buttons } from 'react-bootstrap'
 import Modal from "react-modal";
 import AdminDetails from '../../components/adminDetails/AdminDetails'
 import './Admin.css'
@@ -80,8 +81,9 @@ const Admin = () => {
 
 
    return (
-      <div  >
-      <button onClick={()=>setIsAddProductModelOpen(true)} >Add new product</button>
+      <div >
+      <Button variant="success" size="lg" onClick={()=>setIsAddProductModelOpen(true)}>Add new product</Button>{' '}
+      <p></p>
       <div className='admin-component'>
 
 

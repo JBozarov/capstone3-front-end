@@ -26,6 +26,7 @@ const AdminDetails = props => {
    const [serialNumber, setSerialNumber] = useState(oneProduct[0].serialNumber)
    
 
+   const regions = ["Select Region", "Northeast", "Southeast", "Southwest"]
       
 
 
@@ -80,6 +81,15 @@ const AdminDetails = props => {
          <Modal isOpen={isOpen} style={modalStyle}>
          {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
           <h2>{productName}</h2>
+          
+         {/* <p className='region-dropdown' >Select Region: 
+          <select> 
+           {regions.map((region, i) => (
+              <option key={i} > {region} </option>
+           ))}
+          </select>
+           </p> */}
+
           <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => setQuantity(e.target.value)}  /></p>
           <p className='modal-line' >
              <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
