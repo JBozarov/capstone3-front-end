@@ -25,7 +25,7 @@ const Admin = () => {
    const [category, setCategory] = useState('')
    
    const environment = "development" // production 
-   const url = "http://34.221.195.5/products"; 
+   const url = "http://localhost:8080/products"; 
 
    useEffect (() => {
       dispatch(getAllData());
@@ -83,15 +83,7 @@ const Admin = () => {
       <div  >
       <button onClick={()=>setIsAddProductModelOpen(true)} >Add new product</button>
       <div className='admin-component'>
-      <Modal isOpen={isOpen} style={modalStyle}>
-        {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
-         <h2>{productName}</h2>
-         <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => setQuantity(e.target.value)}  /></p>
-         <p className='modal-line' >
-            <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
-            <Button variant="outline-dark" size="lg" onClick={() => setIsOpen(false)} >CANCEL</Button>{' '}
-         </p> 
-      </Modal>
+
 
       <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
          <h2>Adding new product to inventory</h2>
@@ -118,7 +110,7 @@ const Admin = () => {
                   <th>Quantity</th>
                   <th>Category</th>
                   {/*<th>Image</th> */}
-                  <th>Edit</th>
+                 
                </tr>
          {products.length>0 && products.map((item, i) => (
                <tr key={i} className="" >
@@ -130,11 +122,11 @@ const Admin = () => {
                   <td>{item.quantity}</td>
                   <td>{item.category}</td>
                 {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
-                  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleEdit(i)} >Add Quantity</Button></td>
+                  
                 {/*  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td> */}
                </tr> 
                ))}  
-            <tfoot><td colSpan='9'></td></tfoot>
+            <tfoot><td colSpan='8'></td></tfoot>
          </table>
       </div>
       </div>
