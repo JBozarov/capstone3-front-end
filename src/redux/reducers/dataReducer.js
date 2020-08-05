@@ -9,8 +9,8 @@ const initialState = []
 
 
 export const getAllData = () => {
-      let results = axios.get(`http://34.221.195.5/products`)
-      //let results =  axios.get('http://localhost:8080/products')
+      //let results = axios.get('http://34.221.195.5/products')
+      let results =  axios.get('http://localhost:8080/products')
            .then(response => response.data)
            .catch(error => console.log("data Reducer line 15 fetching error ", error));
          console.log(results)
@@ -95,7 +95,7 @@ const dataReducer = (state = initialState, action ) => {
          return [...deletedItemState]
       }
       case GET_ALL_PRODUCTS + '_FULFILLED': {
-         return [...payload]
+         return payload
       } 
       
       default : return state; 
