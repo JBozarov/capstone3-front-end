@@ -57,7 +57,6 @@ const Admin = () => {
    
 
 
-<<<<<<< HEAD
    useEffect(() => {
       getAllProducts();
    }, [])
@@ -71,22 +70,6 @@ const Admin = () => {
          .catch(error => {
             console.log("Fetch data error is ", error)
          })
-=======
-   useEffect (() => {
-      getAllProducts(); 
-   },[])
-
-   const getAllProducts = () => {
-      axios.get(`http://34.221.195.5/products`)
-      //axios.get('http://localhost:8080/products')
-      .then(response => {
-         console.log("line 66 ", response.data)
-         dispatch(getAllData(response.data))
-      })
-      .catch(error => {
-         console.log("Fetch data error is ", error)
-      })
->>>>>>> 87ed6116b6e29e8809732e9cf905feeafbe1ec97
    }
    // Edit button 
    const handleEdit = ind => {
