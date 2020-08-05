@@ -9,6 +9,7 @@ const Products = (props) => {
 
    //const localData = useSelector(state => state.dataReducer)
    const data = useSelector(state => state.dataReducer)
+   console.log(data)
 
    
 
@@ -26,13 +27,13 @@ const Products = (props) => {
          {data.length>0 && data.map((item, i) => (
             <div key={i} className="product-container-box" >
             <Card style={{ width: '25rem', height: '40rem', border: 'none' }}>
-                  <img src={item.images[0]} className="card-image" />
+                  <img src={item.imageUrl} className="card-image" />
                      <div className='card-body' >
-                        <Card.Text> {item.productName} </Card.Text>
+                        <Card.Text><h3>{item.productName}</h3></Card.Text>
                         <p>Price: <b>${item.price}</b></p>
-                        <p>Serial number <b>{item.serial}</b></p>
-                        <p><b>{item.manufacturer} </b></p>
-                        <p>{item.category}</p>
+                        <p>Serial number: <b>{item.serialNumber}</b></p>
+                        <p>Description: <b>{item.description} </b></p>
+                        <p>Category: {item.category}</p>
                         <div className={item.quantity>10 ? "card-quantity-green" : "card-quantity-red"} > {item.quantity} left in stock </div>
                         <Link to={`/products/${item.id}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link>
                      </div>
