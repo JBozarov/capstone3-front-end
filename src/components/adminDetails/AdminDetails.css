@@ -12,3 +12,11 @@
 .go-back-btn{
    cursor: pointer;
 }
+
+.region-dropdown{
+   width: 80%;
+   display: flex; 
+   flex-direction: row;
+   justify-content: space-evenly;
+   font-size: 20px;
+}
