@@ -25,7 +25,7 @@ const Admin = () => {
    const [category, setCategory] = useState('')
    
    const environment = "development" // production 
-   const url =( environment === "production" ) ? "http://localhost:8080/products" : "http://34.221.195.5/products"; 
+   const url = "http://34.221.195.5/products"; 
 
    useEffect (() => {
       dispatch(getAllData());
