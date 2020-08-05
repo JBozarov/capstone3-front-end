@@ -36,7 +36,8 @@ const AdminDetails = props => {
          quantity, 
          category
       }
-      axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
