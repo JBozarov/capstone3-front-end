@@ -1,21 +1,22 @@
 // import data from '../../assets/data'
-import { SEARCH_DATA, PURCHAE_MADE, EDIT_ITEM, DELETE_ITEM, GET_ALL_PRODUCTS } from './actionTypes'
+import { SEARCH_DATA, PURCHASE_MADE, EDIT_ITEM, DELETE_ITEM, GET_ALL_PRODUCTS } from './actionTypes'
 import axios from 'axios'
 
-const data = []; 
-const originalState = []; 
-const initialState = data
+// const data = []; 
+// const originalState = []; 
+const initialState = []
 
 
 
-export const getAllData =  (data) => {
-      //const products = await axios.get(`http://34.221.195.5/products`)
-      // let results = axios.get('http://localhost:8080/products')
-      //      .then(response => response.data)
-      //      .catch(error => console.log("data Reducer line 15 fetching error ", error));
+export const getAllData = () => {
+      //const products = axios.get(`http://34.221.195.5/products`)
+      let results =  axios.get('http://localhost:8080/products')
+           .then(response => response.data)
+           .catch(error => console.log("data Reducer line 15 fetching error ", error));
+         console.log(results)
    return {
        type: GET_ALL_PRODUCTS, 
-       payload: data
+       payload: results
    }
 }
 
@@ -28,7 +29,7 @@ export const search = input => {
 
 export const purchaseMade = cart => {
    return {
-      type: PURCHAE_MADE,
+      type: PURCHASE_MADE,
       payload: cart
    }
 }
@@ -51,11 +52,13 @@ export const deleteItem = id => {
 
 const dataReducer = (state = initialState, action ) => {
    const { type, payload } = action
+
+   console.log('payload', payload)
+   console.log('initialState', initialState)
+   console.log('state', state)
    switch(type) {
       case SEARCH_DATA : {
-         console.log(data)
-         console.log(initialState)
-         let filtered = originalState.filter(function(product, index) {
+         let filtered = state.filter(function(product, index) {
            {/* if (product.name.toLowerCase().includes(payload.toLowerCase()) || product.price<payload || product.serial === payload){ */}
            if (product.productName.includes(payload.toLowerCase())) {
               console.log('payload is ', payload)
@@ -64,7 +67,7 @@ const dataReducer = (state = initialState, action ) => {
          })  
          return [...filtered]
       }
-      case PURCHAE_MADE : {
+      case PURCHASE_MADE : {
          for ( let i = 0; i<state.length; i++ ) {
             for ( let k = 0; k<payload.length; k++ ) {
                if ( state[i].id === payload[k].id ) {
@@ -91,12 +94,10 @@ const dataReducer = (state = initialState, action ) => {
          let deletedItemState = state.filter(product => product.id !== payload)
          return [...deletedItemState]
       }
-      case GET_ALL_PRODUCTS : {
-         console.log("made api call ", payload)
-         state = [...payload]; 
-         //originalState = state.slice(); 
-         return state; 
-      }
+      case GET_ALL_PRODUCTS + '_FULFILLED': {
+         return [...payload]
+      } 
+      
       default : return state; 
    }
 }

@@ -9,8 +9,7 @@ const Products = (props) => {
 
    //const localData = useSelector(state => state.dataReducer)
    const data = useSelector(state => state.dataReducer)
-   console.log(data)
-   console.log(props)
+
    
 
    return (
