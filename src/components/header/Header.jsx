@@ -34,8 +34,22 @@ const Header = props => {
                      { adminMode ? 
                      <div className={qtyCount ? 'cart-has-item' : null}>
                         <Link to='/cart'><h5>Cart({qtyCount})</h5> </Link>
+<<<<<<< HEAD
                     </div> :
                     <h5></h5>}
+=======
+                    </div> */}
+                  </div>
+                  <div className="lower-box" >
+                       {/* <ul className="nav-bar"  >
+                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>MEN'S</li>
+                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>WOMEN'S</li>
+                  <li onClick={toggleMenu} onMouseEnter={enterMenu}>KID'S</li> 
+    <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li> 
+                     </ul>
+                   {/*  {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null } */}
+                   {/*  {<input className='search-input' value={searchInput} placeholder="Search" onChange={e => handleChange(e)} /> } */}
+>>>>>>> a18a40b86599b4fed24e85a35935192421b31853
                   </div>
                    { adminMode ? 
                      <div className="lower-box" >

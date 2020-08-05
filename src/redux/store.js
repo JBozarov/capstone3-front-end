@@ -1,6 +1,7 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import cartReducer from './reducers/cartReducer'
 import dataReducer from './reducers/dataReducer'
+import promiseMiddleware from 'redux-promise-middleware'
 
 const rootReducer = combineReducers({
    cartReducer, 
@@ -8,4 +9,4 @@ const rootReducer = combineReducers({
 })
 
 
-export default createStore(rootReducer); 
+export default createStore(rootReducer, applyMiddleware(promiseMiddleware)); 
