@@ -25,7 +25,11 @@ const Admin = () => {
    const [category, setCategory] = useState('')
 
    const environment = "development" // production 
+<<<<<<< HEAD
    const url = (environment === "production") ? "http://localhost:8080/products" : "http://34.221.195.5/products";
+=======
+   const url = "http://localhost:8080/products"; 
+>>>>>>> a18a40b86599b4fed24e85a35935192421b31853
 
    useEffect(() => {
       dispatch(getAllData());
@@ -81,6 +85,7 @@ const Admin = () => {
 
    return (
       <div  >
+<<<<<<< HEAD
          <button onClick={() => setIsAddProductModelOpen(true)} >Add new product</button>
          <div className='admin-component'>
             <Modal isOpen={isOpen} style={modalStyle}>
@@ -109,6 +114,28 @@ const Admin = () => {
 
             <table className='table-one' >
                <thead><td colSpan="9">INVENTORY</td></thead>
+=======
+      <button onClick={()=>setIsAddProductModelOpen(true)} >Add new product</button>
+      <div className='admin-component'>
+
+
+      <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
+         <h2>Adding new product to inventory</h2>
+         <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
+         <p className='modal-line' ><input type='textarea' className='medal-input' placeholder="Description" onChange={e => setDescription(e.target.value)} /></p>
+         <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => setPrice(e.target.value)}/></p>
+         <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p>
+         <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" onChange={e => setCategory(e.target.value)} /></p>
+         {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
+         <p className='modal-line' >
+            <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
+            <Button variant="outline-dark" size="lg" onClick={() => setIsAddProductModelOpen(false)} >CANCEL</Button>{' '}
+         </p> 
+      </Modal>
+
+         <table className='table-one' >
+            <thead><td colSpan="9">INVENTORY</td></thead>
+>>>>>>> a18a40b86599b4fed24e85a35935192421b31853
                <tr>
                   <th>ID</th>
                   <th>Product Name</th>
@@ -118,8 +145,9 @@ const Admin = () => {
                   <th>Quantity</th>
                   <th>Category</th>
                   {/*<th>Image</th> */}
-                  <th>Edit</th>
+                 
                </tr>
+<<<<<<< HEAD
                {products.length > 0 && products.map((item, i) => (
                   <tr key={i} className="" >
                      <td>{i + 1}</td>
@@ -137,6 +165,25 @@ const Admin = () => {
                <tfoot><td colSpan='9'></td></tfoot>
             </table>
          </div>
+=======
+         {products.length>0 && products.map((item, i) => (
+               <tr key={i} className="" >
+                  <td>{i+1}</td>
+                  <td> <Link to={`/admin/${item.serialNumber}`} style={{width: '100%'}} > {item.productName}</Link></td>
+                  <td>{item.description}</td>
+                  <td>{item.serialNumber}</td>
+                  <td>{item.price}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.category}</td>
+                {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
+                  
+                {/*  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td> */}
+               </tr> 
+               ))}  
+            <tfoot><td colSpan='8'></td></tfoot>
+         </table>
+      </div>
+>>>>>>> a18a40b86599b4fed24e85a35935192421b31853
       </div>
    )
 }
