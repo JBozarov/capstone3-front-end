@@ -14,7 +14,7 @@ const Header = props => {
   const cart = useSelector(state => state.cartReducer)
   let qtyCount = cart.reduce((a, b) => a + b.cartQuantity, 0);
   const dispatch = useDispatch();  
-   const toggleAdmin = () => setAdminMode(adminMode => !adminMode)
+  const toggleAdmin = () => setAdminMode(adminMode => !adminMode)
   const toggleMenu = () => setDropdownActive(!dropdownActive) 
   const enterMenu = () => setDropdownActive(true)  
   const leaveMenu = () => setDropdownActive(true) 
@@ -41,19 +41,19 @@ const Header = props => {
 
                   <div className="lower-box" >
                        <ul className="nav-bar"  >
-                        <li onClick={toggleMenu} onMouseEnter={enterMenu}>PRODUCTS</li>
+                        <Link to="/tshirts"><li onClick={toggleMenu}>PRODUCTS</li></Link>
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>WOMEN'S</li>
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>KID'S</li> 
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li> 
                      </ul>
-                    {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null }
+                   {/* {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null } */}
                     <input className='search-input' value={searchInput} placeholder="Search" onChange={e => handleChange(e)} /> 
                   </div>             
                      
                   : <h2>All Inventory</h2>} 
                </div>
                <div className="desktopDropdownInstanceContainer">
-                  <DropdownMenu dropdownActive={ dropdownActive } onMouseEnter={ enterMenu } onMouseLeave={ leaveMenu } toggleMenu={toggleMenu}/>
+                  {/*<DropdownMenu dropdownActive={ dropdownActive } onMouseEnter={ enterMenu } onMouseLeave={ leaveMenu } toggleMenu={toggleMenu}/> */}
                </div>
             </div>
          </div>

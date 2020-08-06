@@ -24,8 +24,12 @@ const Admin = () => {
    const [price, setPrice] = useState(0)
    const [quantity, setQuantity] = useState(0)
    const [category, setCategory] = useState('')
+<<<<<<< HEAD
 
    
+=======
+   const [image_url, setImageUrl] = useState('')
+>>>>>>> 4d8c0b7372a5ec3c2564f03ccbecfe92d4d55014
    const url = "http://localhost:8080/products"; 
 
    useEffect(() => {
@@ -63,9 +67,11 @@ const Admin = () => {
          description: description,
          price: price,
          quantity: quantity,
-         category: category
+         category: category,
+         imageUrl: image_url
       }
       console.log(body)
+<<<<<<< HEAD
       axios.post(url, body)
          .then(res => {
             setProductName("")
@@ -77,7 +83,19 @@ const Admin = () => {
             setIsAddProductModelOpen(false)
             console.log("error is ", err)
          })
+=======
+      axios.post(url, body) 
+      .then(res => {
+         dispatch(getAllData());
+         setIsAddProductModelOpen(false)
+      })
+      .catch(err => {
+         setIsAddProductModelOpen(false)
+         console.log("error is ", err)
+      })
+>>>>>>> 4d8c0b7372a5ec3c2564f03ccbecfe92d4d55014
    }
+
 
 
    return (
@@ -127,8 +145,9 @@ const Admin = () => {
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
          <p className='modal-line' ><input type='textarea' className='medal-input' placeholder="Description" onChange={e => setDescription(e.target.value)} /></p>
          <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => setPrice(e.target.value)}/></p>
-         <p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p>
+         {/*<p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p> */}
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" onChange={e => setCategory(e.target.value)} /></p>
+         <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" onChange={e => setImageUrl(e.target.value)} /></p>
          {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
          <p className='modal-line' >
             <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
@@ -145,7 +164,9 @@ const Admin = () => {
                   <th>Description</th>
                   <th>Serial#</th>
                   <th>Price</th>
-                  <th>Quantity</th>
+                  <th>Qty NE</th>
+                  <th>Qty SE</th>
+                  <th>Qty SW</th>
                   <th>Category</th>
                   {/*<th>Image</th> */}
                  
@@ -176,7 +197,9 @@ const Admin = () => {
                   <td>{item.description}</td>
                   <td>{item.serialNumber}</td>
                   <td>{item.price}</td>
-                  <td>{item.quantity}</td>
+                  <td>{item.regionNe}</td>
+                  <td>{item.regionSe}</td>
+                  <td>{item.regionSw}</td>
                   <td>{item.category}</td>
                 {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
                   

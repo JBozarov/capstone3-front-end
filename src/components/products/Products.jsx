@@ -35,7 +35,7 @@ const Products = (props) => {
                         <p>Description: <b>{item.description} </b></p>
                         <p>Category: {item.category}</p>
                         <div className={item.quantity>10 ? "card-quantity-green" : "card-quantity-red"} > {item.quantity} left in stock </div>
-                        <Link to={`/products/${item.id}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link>
+                        <Link to={`/products/${item.serialNumber}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link>
                      </div>
                </Card>
             </div> 
