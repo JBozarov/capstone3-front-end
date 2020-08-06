@@ -46,7 +46,7 @@ export const cartReducer = (state = initialState, action ) => {
             var toggle = true; 
 
             cartItems = state.map(product => {
-               if (product.id === payload.id && product.images === payload.images && product.size === payload.size ){
+               if ( product.serialNumber === payload.serialNumber ){
                   toggle = false
                   product.cartQuantity += 1; 
                   product.totalPrice = product.price * product.cartQuantity; 
@@ -58,14 +58,19 @@ export const cartReducer = (state = initialState, action ) => {
             if (toggle) {
                cartItems.push({
                   id: payload.id,
-                  name: payload.name,
-                  images: payload.images,
+                  name: payload.productName,
+                  imageUrl: payload.imageUrl,
                   price: payload.price, 
                   quantity: payload.quantity,
                   cartQuantity: payload.cartQuantity, 
-                  serial: payload.serial, 
-                  size: payload.size, 
-                  totalPrice: payload.totalPrice
+                  serial: payload.serialNumber, 
+                  totalPrice: payload.totalPrice,
+                  category: payload.category,
+                  description: payload.description,
+                  regionNe: payload.regionNe,
+                  regionSe: payload.regionSe,
+                  regionSw: payload.regionSw,
+                  serialNumber: payload.serialNumber
                })
             }
          
