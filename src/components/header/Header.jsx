@@ -18,8 +18,8 @@ const Header = props => {
   const toggleMenu = () => setDropdownActive(!dropdownActive) 
   const enterMenu = () => setDropdownActive(true)  
   const leaveMenu = () => setDropdownActive(true) 
-  console.log(props)
-  console.log("header path ", props.location)
+
+
   const handleChange = e => {
      setSearchInput(e.target.value)
    }

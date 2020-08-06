@@ -33,8 +33,8 @@ const AdminDetails = props => {
          category
       }
       console.log('body ', body)
-      axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
-      //axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
@@ -55,8 +55,8 @@ const AdminDetails = props => {
          body = {...body, regionSw: quantity}
       }
 
-      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
-      //axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
+      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
       .then(res => {
          setIsOpen(false)
          props.history.push('/admin')
