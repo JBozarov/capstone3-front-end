@@ -101,7 +101,7 @@ const Cart = () => {
                   <p style={{fontSize: '10px', color: (item.regionNe + item.regionSe + item.regionSw)>10 ? 'black' : 'red'}} > ( {(item.regionNe + item.regionSe + item.regionSw)} left in stock )</p>
                   <p className='qty-and-update' >
                      {/*<label>Qty: <select>{[...Array(50)].map((e, i)=><option value={i+1} onChange={e => handleChange(e, item.id)} key={i}>{i+1}</option>)}</select></label>*/}
-                     <input type='number' value={index === tempIndex ? qty : 1} min='1' className='quantity-input' onChange={e => handleChange(e, index)} />
+                     {/* <input type='number' value={index === tempIndex ? qty : 1} min='1' className='quantity-input' onChange={e => handleChange(e, index)} /> */}
                      <Button variant="outline-dark" size="sm" onClick={() => updateItem(index)} >UPDATE</Button>{' '}
                      <Button variant="outline-dark" size="sm" onClick={() => remove(index)} >REMOVE</Button>{' '}
                   </p>
