@@ -27,6 +27,7 @@ const AdminDetails = props => {
    const [regionNe, setRegionNe] = useState(0)
    const [regionSe, setRegionSe] = useState(0)
    const [regionSw, setRegionSw] = useState(0)
+   const [tempRegion, setTempRegion] = useState('')
       
 
 
@@ -38,8 +39,8 @@ const AdminDetails = props => {
          quantity, 
          category
       }
-      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
-      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      //axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
@@ -47,21 +48,40 @@ const AdminDetails = props => {
       .catch(err => console.log(err))
    }
 
-   const handleClick = val => {
-      if (val === "Northeast") setRegionNe(parseInt(quantity))
-      else if (val === "Southeast") setRegionSe(parseInt(quantity))
-      else if (val === "Southwest") setRegionSw(parseInt(quantity))
-   }
+   // const handleQuantity = val => {
+   //    setQuantity(val); 
+   //    if (tempRegion === "Northeast") setRegionNe(quantity)
+   //    else if (tempRegion === "Southeast") setRegionSe(quantity)
+   //    else if (tempRegion === "Southwest") setRegionSw(quantity)
+   // }
+
+   // const handleClick = val => {
+   //    setTempRegion(val)
+   //    if (val === "Northeast") setRegionNe(parseInt(quantity))
+   //    else if (val === "Southeast") setRegionSe(parseInt(quantity))
+   //    else if (val === "Southwest") setRegionSw(parseInt(quantity))
+   // }
 
    const submit = () => {
-      const body = {
-         regionNe,
-         regionSe, 
-         regionSw
+      let body = {}
+      if (tempRegion === "Northeast") {
+         console.log("ne")
+         body = {...body, regionNe: quantity}
       }
+      else if (tempRegion === "Southeast") {
+         console.log("SE")
+         body = {...body, regionSe: quantity}
+      }
+      else if (tempRegion === "Southwest") {
+         console.log("SW")
+         body = {...body, regionSw: quantity}
+      }
+     
+      console.log('tempRegion', tempRegion)
+   
       console.log('body is => ', body)
-      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
-      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
+      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
+      //axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
       .then(res => {
          setIsOpen(false)
          props.history.push('/admin')
@@ -83,9 +103,7 @@ const AdminDetails = props => {
             <h2>Updating {oneProduct[0].productName} </h2>
             <p className='modal-line' > <h2>Description</h2> <input type='textarea' className='medal-input' value={description} onChange={e => setDescription(e.target.value)} /></p>
             <p className='modal-line' ><h2>Price</h2> <input type='number' className='medal-input' value={price} onChange={e => setPrice(e.target.value)}/></p>
-           
             <p className='modal-line' ><h2>Category</h2> <input type='text' className='medal-input' value={category} onChange={e => setCategory(e.target.value)} /></p>
-            
             <p className='modal-line' >
                <Button variant="outline-dark" size="lg" onClick={() => updateProduct()} >SUBMIT</Button>{' '}
                <Button variant="outline-dark" size="lg" onClick={() => setIsAdminDetailsModelOpen(false)} >CANCEL</Button>{' '}
@@ -93,13 +111,10 @@ const AdminDetails = props => {
          </Modal> 
 
          <Modal isOpen={isOpen} style={modalStyle}>
-         {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
           <h2>{productName}</h2>
-         
           <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => setQuantity(e.target.value)}  /></p>
-
           <p className='region-dropdown' >Select Region: 
-          <select onChange={e => handleClick(e.target.value)}  > 
+          <select onChange={e => setTempRegion(e.target.value)}  > 
              <option >Select Region</option>
              <option value='Northeast' >Northeast</option>
              <option value='Southeast' >Southeast</option>
