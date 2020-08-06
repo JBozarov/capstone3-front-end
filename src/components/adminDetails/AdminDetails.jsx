@@ -24,9 +24,9 @@ const AdminDetails = props => {
    const [quantity, setQuantity] = useState(oneProduct[0].quantity)
    const [category, setCategory] = useState(oneProduct[0].category)
    const [serialNumber, setSerialNumber] = useState(oneProduct[0].serialNumber)
-   
-
-   const regions = ["Select Region", "Northeast", "Southeast", "Southwest"]
+   const [regionNe, setRegionNe] = useState(0)
+   const [regionSe, setRegionSe] = useState(0)
+   const [regionSw, setRegionSw] = useState(0)
       
 
 
@@ -47,9 +47,20 @@ const AdminDetails = props => {
       .catch(err => console.log(err))
    }
 
+   const handleClick = val => {
+      if (val === "Northeast") setRegionNe(parseInt(quantity))
+      else if (val === "Southeast") setRegionSe(parseInt(quantity))
+      else if (val === "Southwest") setRegionSw(parseInt(quantity))
+   }
 
    const submit = () => {
-      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, {quantity: quantity})
+      const body = {
+         regionNe,
+         regionSe, 
+         regionSw
+      }
+      console.log('body is => ', body)
+      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
       .then(res => {
          setIsOpen(false)
          props.history.push('/admin')
@@ -60,6 +71,8 @@ const AdminDetails = props => {
       })
       
    }
+
+
    
 
    return (
@@ -81,16 +94,18 @@ const AdminDetails = props => {
          <Modal isOpen={isOpen} style={modalStyle}>
          {/* <p className='modal-line' >Change Price  <input type='number' className='medal-input' placeholder="enter price" onChange={e => handlePrice(e)} /></p> */}
           <h2>{productName}</h2>
-          
-         {/* <p className='region-dropdown' >Select Region: 
-          <select> 
-           {regions.map((region, i) => (
-              <option key={i} > {region} </option>
-           ))}
-          </select>
-           </p> */}
-
+         
           <p className='modal-line' > How many adding<input type='number' className='medal-input' placeholder="enter quantity" onChange={e => setQuantity(e.target.value)}  /></p>
+
+          <p className='region-dropdown' >Select Region: 
+          <select onChange={e => handleClick(e.target.value)}  > 
+             <option >Select Region</option>
+             <option value='Northeast' >Northeast</option>
+             <option value='Southeast' >Southeast</option>
+             <option value='Southwest' >Southwest</option>
+          </select>
+         </p> 
+
           <p className='modal-line' >
              <Button variant="outline-dark" size="lg" onClick={submit} >SUBMIT</Button>{' '}
              <Button variant="outline-dark" size="lg" onClick={() => setIsOpen(false)} >CANCEL</Button>{' '}

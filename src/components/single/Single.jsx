@@ -15,13 +15,16 @@ const [ index, setIndex ] = useState(0)
 const [ selectedSize, setSelectedSize ] = useState('M')
 const [ selectedColor, setSelectedColor ] = useState('')
 const dispatch = useDispatch();
+console.log('props.match.params.serialNumber', props.match.params.serialNumber)
+
+
 
    useEffect(() => {
-      if (props.match.params.product_id) {
-         let thisItem = props.data.filter((val, ind) => ind === parseInt(props.match.params.product_id))[0]
-         let firstImage = thisItem.images[0]
+      if (props.match.params.serialNumber) {
+         let thisItem = props.data.filter(val => val.serialNumber === props.match.params.serialNumber)[0];
+         console.log("hit ", thisItem)
          setItem(thisItem)
-         setSelectedColor(firstImage)
+         // setSelectedColor(firstImage)
       }
    }, [])
 
@@ -58,16 +61,16 @@ const dispatch = useDispatch();
                <Breadcrumb.Item ><Link to='/'>HOME</Link></Breadcrumb.Item>
                <Breadcrumb.Item href="#"><Link to='#'>MEN'S</Link></Breadcrumb.Item>
                <Breadcrumb.Item active><Link to='/tshirts'>T-SHIRTS</Link></Breadcrumb.Item>
-               <Breadcrumb.Item active>  {`${item.manufacturer} T-Shirt #${item.serial}`} </Breadcrumb.Item>
+               <Breadcrumb.Item active>  {`${item.category} T-Shirt #${item.serialNumber}`} </Breadcrumb.Item>
             </Breadcrumb>
          </div>
          <div className="single-component" >
          <div className='carousel-container' >
             <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} >
                <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
-                  <img src={item.images && item.images[0]} alt={item.name} className="carousel-img" />
+                  <img src={item.imageUrl} alt={item.productName} className="carousel-img" />
                </Carousel.Item>
-               <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
+               {/*<Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
                   <img src={item.images && item.images[1]} alt={item.name} className="carousel-img" />
                </Carousel.Item>
                <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
@@ -75,22 +78,22 @@ const dispatch = useDispatch();
                </Carousel.Item>
                <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
                   <img src={item.images && item.images[3]} alt={item.name} className="carousel-img" />
-               </Carousel.Item>
+   </Carousel.Item> */}
             </Carousel>
             
          </div>
          <div className='info-container' >
             <div className='sub-cont1' >
-               <h2> {item.name} </h2>
+               <h2> {item.productName} </h2>
                <h4> ${item.price} </h4>
             </div>
             <hr/>
-            <div className="sub-cont2" >
+            {/*<div className="sub-cont2" >
                <p>Color you selected: <img src={selectedColor} className='selected-image'  /></p>
                   <div className='sub-cont2-box' > {item.images && item.images.map((image, i) => 
                   <img key={i} src={image} className='four-images' onClick={() => selectImage(i)} />
                   )}</div>
-            </div>
+                  </div>*/}
             <hr />
             <div className="sub-cont3" >
                <h5 className="selected-size" >Size - {selectedSize}</h5> 
