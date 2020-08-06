@@ -12,19 +12,17 @@ toast.configure();
 const Single = (props) => {
 const [ item, setItem ] = useState({})
 const [ index, setIndex ] = useState(0)
-const [ selectedSize, setSelectedSize ] = useState('M')
-const [ selectedColor, setSelectedColor ] = useState('')
+const [totalItems, setTotalItems] = useState(0)
 const dispatch = useDispatch();
-console.log('props.match.params.serialNumber', props.match.params.serialNumber)
 
 
 
    useEffect(() => {
       if (props.match.params.serialNumber) {
          let thisItem = props.data.filter(val => val.serialNumber === props.match.params.serialNumber)[0];
-         console.log("hit ", thisItem)
          setItem(thisItem)
-         // setSelectedColor(firstImage)
+         let temp = thisItem.regionNe + thisItem.regionSe + thisItem.regionSw
+         setTotalItems(temp)
       }
    }, [])
 
@@ -34,17 +32,12 @@ console.log('props.match.params.serialNumber', props.match.params.serialNumber)
     }
 
 
-    const selectImage = ind => {
-       let imgUrl = item.images[ind]
-       setSelectedColor(imgUrl)
-    }
     const prepForCart = () => {
       let addedItem = { 
-         ...item, images: selectedColor, size: selectedSize, cartQuantity: 1, totalPrice: item.price
+         ...item, cartQuantity: 1, totalPrice: item.price
       }
-   
       dispatch(addToCart(addedItem));
-      toast.success(`${item.name} is added to your cart`, {
+      toast.success(`${item.productName} is added to your cart`, {
          closeButton: false,
          transition: Flip,
          className: 'toastify',
@@ -66,49 +59,37 @@ console.log('props.match.params.serialNumber', props.match.params.serialNumber)
          </div>
          <div className="single-component" >
          <div className='carousel-container' >
-            <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} >
+            <Carousel activeIndex={index} onSelect={handleSelect} interval={59000} >
                <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
                   <img src={item.imageUrl} alt={item.productName} className="carousel-img" />
                </Carousel.Item>
-               {/*<Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
-                  <img src={item.images && item.images[1]} alt={item.name} className="carousel-img" />
-               </Carousel.Item>
-               <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
-                  <img src={item.images && item.images[2]} alt={item.name} className="carousel-img" />
-               </Carousel.Item>
-               <Carousel.Item style={{backgroundColor: 'whitesmoke'}} >
-                  <img src={item.images && item.images[3]} alt={item.name} className="carousel-img" />
-   </Carousel.Item> */}
             </Carousel>
             
          </div>
          <div className='info-container' >
             <div className='sub-cont1' >
                <h2> {item.productName} </h2>
-               <h4> ${item.price} </h4>
+               <h2> ${item.price} </h2>
             </div>
             <hr/>
-            {/*<div className="sub-cont2" >
-               <p>Color you selected: <img src={selectedColor} className='selected-image'  /></p>
-                  <div className='sub-cont2-box' > {item.images && item.images.map((image, i) => 
-                  <img key={i} src={image} className='four-images' onClick={() => selectImage(i)} />
-                  )}</div>
-                  </div>*/}
-            <hr />
+               <p>Product description</p>
+               <h2>{item.description}</h2>
+            <hr/>
+               <p>Product category</p>
+               <h2>{item.category}</h2>
+            <hr/>
             <div className="sub-cont3" >
-               <h5 className="selected-size" >Size - {selectedSize}</h5> 
-               <div className='five-btns' >
-                  <button  className="size-btn" onClick={() => setSelectedSize('S')} >S</button>
-                  <button  className="size-btn" onClick={() => setSelectedSize('M')} >M</button>
-                  <button  className="size-btn" onClick={() => setSelectedSize('L')} >L</button>
-                  <button  className="size-btn" onClick={() => setSelectedSize('XL')} >XL</button>
-                  <button  className="size-btn" onClick={() => setSelectedSize('XXL')} >XXL</button>
-               </div>
+               <p className="selected-size" > Quantity </p> 
+               <h2>{totalItems}</h2>
             </div>
             <hr/>
             <div className="sub-cont4">
                <p>FREE 3-DAY SHIPPING</p>
-               <button className="add-to-cart-btn" onClick={ prepForCart } >ADD TO CART</button>
+               {totalItems>0 ? 
+                  <button className="add-to-cart-btn" onClick={ prepForCart } >ADD TO CART</button>
+                  : <h2>SOLD OUT</h2>
+               }
+               
             </div>
          </div>
       </div>

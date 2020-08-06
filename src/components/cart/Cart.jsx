@@ -24,11 +24,11 @@ const Cart = () => {
    const [ qty, setQty ] = useState(1)
    const [ tempIndex, setTempIndex ] = useState(0)
    const cart = useSelector(state => state.cartReducer)
-   console.log("added cart", cart)
    const dispatch = useDispatch();
    
    const total = cart.reduce((a, b) => parseFloat(a) + parseFloat(b.totalPrice), 0); 
    let grantTotal = (total*1.08).toFixed(2)
+
 
    const onToken = token => {
       console.log(token)
@@ -91,14 +91,13 @@ const Cart = () => {
          <div className='cart-items' >
          {cart.length>0 ? cart.map((item, index) => 
             <div key={index} className='single-cart-item' > 
-               <img src={item.images} className='cart-image' /> 
+               <img src={item.imageUrl} className='cart-image' /> 
                <div className='right-box'>
-                  <h6> {item.name} </h6>
-                  <p> ${item.price}ea </p>
+                  <h6> {item.productName} </h6>
+                  <p> ${item.price} each</p>
                   <p style={{fontSize: '20px'}} > ${item.totalPrice.toFixed(2)} </p>
-                  <p> SIZE: {item.size} </p>
                   <p> QTY: {item.cartQuantity} </p>
-                  <p style={{fontSize: '10px', color: item.quantity>10 ? 'black' : 'red'}} > ({item.quantity} left in stock )</p>
+                  <p style={{fontSize: '10px', color: (item.regionNe + item.regionSe + item.regionSw)>10 ? 'black' : 'red'}} > ( {(item.regionNe + item.regionSe + item.regionSw)} left in stock )</p>
                   <p className='qty-and-update' >
                      {/*<label>Qty: <select>{[...Array(50)].map((e, i)=><option value={i+1} onChange={e => handleChange(e, item.id)} key={i}>{i+1}</option>)}</select></label>*/}
                      <input type='number' value={index === tempIndex ? qty : 1} min='1' className='quantity-input' onChange={e => handleChange(e, index)} />
