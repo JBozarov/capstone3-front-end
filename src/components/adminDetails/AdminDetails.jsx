@@ -9,14 +9,10 @@ import axios from 'axios'
 
   
 
-
-
-
 const AdminDetails = props => {
    const data = useSelector(state => state.dataReducer)
    const [ isOpen, setIsOpen ] = useState(false)
    const [ isAdminDetailsModelOpen, setIsAdminDetailsModelOpen ] = useState(false)
-   //const [oneProduct, setOneProduct] = useState([])
    const oneProduct = data.filter(product => product.serialNumber === props.match.params.serialNumber)
    const [productName, setProductName] = useState(oneProduct[0].productName)
    const [description, setDescription] = useState(oneProduct[0].description)
@@ -24,9 +20,6 @@ const AdminDetails = props => {
    const [quantity, setQuantity] = useState(oneProduct[0].quantity)
    const [category, setCategory] = useState(oneProduct[0].category)
    const [serialNumber, setSerialNumber] = useState(oneProduct[0].serialNumber)
-   const [regionNe, setRegionNe] = useState(0)
-   const [regionSe, setRegionSe] = useState(0)
-   const [regionSw, setRegionSw] = useState(0)
    const [tempRegion, setTempRegion] = useState('')
       
 
@@ -39,8 +32,8 @@ const AdminDetails = props => {
          quantity, 
          category
       }
-      axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
-      //axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
@@ -48,40 +41,21 @@ const AdminDetails = props => {
       .catch(err => console.log(err))
    }
 
-   // const handleQuantity = val => {
-   //    setQuantity(val); 
-   //    if (tempRegion === "Northeast") setRegionNe(quantity)
-   //    else if (tempRegion === "Southeast") setRegionSe(quantity)
-   //    else if (tempRegion === "Southwest") setRegionSw(quantity)
-   // }
-
-   // const handleClick = val => {
-   //    setTempRegion(val)
-   //    if (val === "Northeast") setRegionNe(parseInt(quantity))
-   //    else if (val === "Southeast") setRegionSe(parseInt(quantity))
-   //    else if (val === "Southwest") setRegionSw(parseInt(quantity))
-   // }
 
    const submit = () => {
       let body = {}
       if (tempRegion === "Northeast") {
-         console.log("ne")
          body = {...body, regionNe: quantity}
       }
       else if (tempRegion === "Southeast") {
-         console.log("SE")
          body = {...body, regionSe: quantity}
       }
       else if (tempRegion === "Southwest") {
-         console.log("SW")
          body = {...body, regionSw: quantity}
       }
-     
-      console.log('tempRegion', tempRegion)
-   
-      console.log('body is => ', body)
-      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
-      //axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
+
+      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
       .then(res => {
          setIsOpen(false)
          props.history.push('/admin')
