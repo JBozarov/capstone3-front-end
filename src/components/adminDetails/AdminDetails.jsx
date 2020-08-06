@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './AdminDetails.css'
-import { Card, ListGroup, ListGroupItem, Button, ButtonGroup } from 'react-bootstrap'
+import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 import { MdKeyboardBackspace } from 'react-icons/md'
-import { useSelector, connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import Modal from "react-modal";
 import axios from 'axios'
@@ -38,8 +38,8 @@ const AdminDetails = props => {
          quantity, 
          category
       }
-      axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
-      //axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
@@ -60,7 +60,8 @@ const AdminDetails = props => {
          regionSw
       }
       console.log('body is => ', body)
-      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
+      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
       .then(res => {
          setIsOpen(false)
          props.history.push('/admin')
