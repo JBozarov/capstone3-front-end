@@ -25,12 +25,8 @@ const Admin = () => {
    const [quantity, setQuantity] = useState(0)
    const [category, setCategory] = useState('')
 
-   const environment = "development" // production 
-<<<<<<< HEAD
-   const url = (environment === "production") ? "http://localhost:8080/products" : "http://34.221.195.5/products";
-=======
+   
    const url = "http://localhost:8080/products"; 
->>>>>>> a18a40b86599b4fed24e85a35935192421b31853
 
    useEffect(() => {
       dispatch(getAllData());
