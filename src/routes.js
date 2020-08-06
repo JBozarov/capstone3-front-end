@@ -16,7 +16,7 @@ export default (
       <Route exact path='/admin' component={Admin} /> 
       <Route path='/admin/:serialNumber' render={(props) => <AdminDetails {...props} />}/>
       <Route exact path='/tshirts' component={Products} />
-      <Route exact path='/products/:product_id' component={Single} />
+      <Route exact path='/products/:serialNumber' component={Single} />
       <Route exact path='/cart' component={Cart} />
    </Switch>
 )
