@@ -17,7 +17,7 @@ const AdminDetails = props => {
    const [productName, setProductName] = useState(oneProduct[0].productName)
    const [description, setDescription] = useState(oneProduct[0].description)
    const [price, setPrice] = useState(oneProduct[0].price)
-   const [quantity, setQuantity] = useState(oneProduct[0].quantity)
+   const [quantity, setQuantity] = useState(0)
    const [category, setCategory] = useState(oneProduct[0].category)
    const [serialNumber, setSerialNumber] = useState(oneProduct[0].serialNumber)
    const [tempRegion, setTempRegion] = useState('')
@@ -29,7 +29,6 @@ const AdminDetails = props => {
          productName: oneProduct[0].productName,
          description, 
          price, 
-         quantity, 
          category
       }
       //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
@@ -112,7 +111,7 @@ const AdminDetails = props => {
                      <ListGroupItem><h4> Serial Number: {product.serialNumber} </h4></ListGroupItem>
                      <ListGroupItem><h3> Price: ${product.price} </h3></ListGroupItem>
                      <ListGroupItem><h3> <h3> Category: {product.category} </h3> </h3></ListGroupItem>
-                     <ListGroupItem><h3> Quantity: {product.quantity} </h3></ListGroupItem>
+                     <ListGroupItem><h3> Quantity is : {(product.regionNe + product.regionSe + product.regionSw)} </h3></ListGroupItem>
                         <ListGroupItem>
                         <Button variant="outline-secondary" onClick={()=>setIsAdminDetailsModelOpen(true)} >Update Product</Button>{' '}
                         <Button variant="outline-secondary" onClick={()=>setIsOpen(true)} >Add Quantity</Button>{' '}
