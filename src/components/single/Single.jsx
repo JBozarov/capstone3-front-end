@@ -86,7 +86,7 @@ const dispatch = useDispatch();
             <div className="sub-cont4">
                <p>FREE 3-DAY SHIPPING</p>
                {totalItems>0 ? 
-                  <button className="add-to-cart-btn" onClick={ prepForCart } >ADD TO CART</button>
+                  <button className="add-to-cart-btn" onClick={ () => prepForCart() } >ADD TO CART</button>
                   : <h2>SOLD OUT</h2>
                }
                

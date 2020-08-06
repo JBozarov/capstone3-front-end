@@ -29,6 +29,7 @@ const Cart = () => {
    const total = cart.reduce((a, b) => parseFloat(a) + parseFloat(b.totalPrice), 0); 
    let grantTotal = (total*1.08).toFixed(2)
 
+   console.log("cart is ", cart)
 
    const onToken = token => {
       console.log(token)
