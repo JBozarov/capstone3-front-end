@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, withRouter, Route, Router } from 'react-router-dom'
-import { editItem, deleteItem, getAllData } from '../../redux/reducers/dataReducer'
-import { Buttons } from 'react-bootstrap'
+import { Link, withRouter } from 'react-router-dom'
+import { getAllData } from '../../redux/reducers/dataReducer'
 import Modal from "react-modal";
-import AdminDetails from '../../components/adminDetails/AdminDetails'
 import './Admin.css'
 import axios from 'axios'
 
@@ -15,7 +13,10 @@ import axios from 'axios'
 const Admin = () => {
    const products = useSelector(state => state.dataReducer)
    const dispatch = useDispatch();
+<<<<<<< HEAD
    const [isOpen, setIsOpen] = useState(false)
+=======
+>>>>>>> de194bdfde485e4022e9dcefc9dc81a42dd8586c
    const [isAddProductModelOpen, setIsAddProductModelOpen] = useState(false);
 
    const [productName, setProductName] = useState('')
@@ -29,8 +30,13 @@ const Admin = () => {
    
 =======
    const [image_url, setImageUrl] = useState('')
+<<<<<<< HEAD
 >>>>>>> 4d8c0b7372a5ec3c2564f03ccbecfe92d4d55014
    const url = "http://localhost:8080/products"; 
+=======
+   //const url = "http://localhost:8080/products"; 
+   const url = "http://34.221.195.5/products"; 
+>>>>>>> de194bdfde485e4022e9dcefc9dc81a42dd8586c
 
    useEffect(() => {
       dispatch(getAllData());
@@ -42,11 +48,11 @@ const Admin = () => {
       let temp = products[ind]
       setPrice(temp.price)
       setQuantity(temp.quantity)
-      setIsOpen(true)
       setProductName(temp.productName)
       setSerialNumber(temp.serialNumber)
    }
 
+<<<<<<< HEAD
    // Submit button 
    const submit = () => {
       axios.put(url + `/quantity/${serialNumber}`, { quantity: quantity })
@@ -59,6 +65,8 @@ const Admin = () => {
          })
 
    }
+=======
+>>>>>>> de194bdfde485e4022e9dcefc9dc81a42dd8586c
 
    // Post request
    const addProduct = () => {
@@ -219,6 +227,7 @@ const Admin = () => {
 export default withRouter(Admin);
 
 
+<<<<<<< HEAD
 
 const modalStyle = {
    content: {
@@ -233,6 +242,8 @@ const modalStyle = {
 };
 
 
+=======
+>>>>>>> de194bdfde485e4022e9dcefc9dc81a42dd8586c
 const modelAddProductStyle = {
    content: {
       width: "650px",
