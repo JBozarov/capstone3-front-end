@@ -16,28 +16,17 @@ const Admin = () => {
    const [isAddProductModelOpen, setIsAddProductModelOpen] = useState(false);
    
    const [productName, setProductName] = useState('')
-   const [serialNumber, setSerialNumber] = useState('')
    const [description, setDescription] = useState('')
    const [price, setPrice] = useState(0)
    const [quantity, setQuantity] = useState(0)
    const [category, setCategory] = useState('')
    const [image_url, setImageUrl] = useState('')
-   const url = "http://localhost:8080/products"; 
-   //const url = "http://34.221.195.5/products"; 
+   //const url = "http://localhost:8080/products"; 
+   const url = "http://34.221.195.5/products"; 
 
    useEffect (() => {
       dispatch(getAllData());
    },[]); 
-
- 
-   // Edit button 
-   const handleEdit = ind => {
-      let temp = products[ind]
-      setPrice(temp.price)
-      setQuantity(temp.quantity)
-      setProductName(temp.productName)
-      setSerialNumber(temp.serialNumber)
-   }
 
 
    // Post request
@@ -63,23 +52,18 @@ const Admin = () => {
    }
 
 
-
    return (
       <div >
       <Button variant="success" size="lg" onClick={()=>setIsAddProductModelOpen(true)}>Add new product</Button>{' '}
       <p></p>
       <div className='admin-component'>
-
-
       <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
          <h2>Adding new product to inventory</h2>
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
          <p className='modal-line' ><input type='textarea' className='medal-input' placeholder="Description" onChange={e => setDescription(e.target.value)} /></p>
          <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => setPrice(e.target.value)}/></p>
-         {/*<p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p> */}
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" onChange={e => setCategory(e.target.value)} /></p>
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" onChange={e => setImageUrl(e.target.value)} /></p>
-         {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
          <p className='modal-line' >
             <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
             <Button variant="outline-dark" size="lg" onClick={() => setIsAddProductModelOpen(false)} >CANCEL</Button>{' '}
@@ -98,7 +82,6 @@ const Admin = () => {
                   <th>Qty SE</th>
                   <th>Qty SW</th>
                   <th>Category</th>
-                  {/*<th>Image</th> */}
                  
                </tr>
          {products.length>0 && products.map((item, i) => (
@@ -112,9 +95,6 @@ const Admin = () => {
                   <td>{item.regionSe}</td>
                   <td>{item.regionSw}</td>
                   <td>{item.category}</td>
-                {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
-                  
-                {/*  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td> */}
                </tr> 
                ))}  
             <tfoot><td colSpan='8'></td></tfoot>
@@ -123,7 +103,6 @@ const Admin = () => {
       </div>
    )
 }
-
 
 
 export default withRouter(Admin);
