@@ -48,7 +48,7 @@ const Header = props => {
                         <li onClick={toggleMenu} onMouseEnter={enterMenu}>DEALS</li> 
                      </ul>
                    {/* {props.location.pathname === '/tshirts' ? <input className='search-input' value={searchInput} placeholder="Search name or max-price" onChange={e => handleChange(e)} /> : null } */}
-                    <input className='search-input' value={searchInput} placeholder="Search" onChange={e => handleChange(e)} /> 
+                   {/*<input className='search-input' value={searchInput} placeholder="Search" onChange={e => handleChange(e)} /> */}
                   </div>             
                      
                   : <h2>All Inventory</h2>} 

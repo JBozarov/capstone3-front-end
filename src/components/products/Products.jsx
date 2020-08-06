@@ -3,14 +3,31 @@ import { Breadcrumb, Card, Button } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { BsArrow90DegLeft } from 'react-icons/bs'
 import './Products.css'
-import { useSelector, connect } from 'react-redux'
+import { useSelector, connect, useDispatch } from 'react-redux'
+import { addToCart } from '../../redux/reducers/cartReducer'
+import { toast, Flip } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure();
+
 
 const Products = (props) => {
-
-   //const localData = useSelector(state => state.dataReducer)
    const data = useSelector(state => state.dataReducer)
-   console.log(data)
+   const dispatch = useDispatch();
 
+
+   const prepForCart = item => {
+      let addedItem = { 
+         ...item, cartQuantity: 1, totalPrice: item.price
+      }
+      dispatch(addToCart(addedItem));
+      toast.success(`${item.productName} is added to your cart`, {
+         closeButton: false,
+         transition: Flip,
+         className: 'toastify',
+         position: "top-center",
+         autoClose: 1500,
+      });
+    }
    
 
    return (
@@ -27,15 +44,18 @@ const Products = (props) => {
          {data.length>0 && data.map((item, i) => (
             <div key={i} className="product-container-box" >
             <Card style={{ width: '25rem', height: '40rem', border: 'none' }}>
-                  <img src={item.imageUrl} className="card-image" />
+            <Link to={`/products/${item.serialNumber}`}> <img src={item.imageUrl} className="card-image" /></Link>
                      <div className='card-body' >
                         <Card.Text><h3>{item.productName}</h3></Card.Text>
                         <p>Price: <b>${item.price}</b></p>
                         <p>Serial number: <b>{item.serialNumber}</b></p>
-                        <p>Description: <b>{item.description} </b></p>
+                        {/*<p>Description: <b>{item.description} </b></p> */}
                         <p>Category: {item.category}</p>
                         <div className={(item.regionNe + item.regionSe + item.regionSw)>10 ? "card-quantity-green" : "card-quantity-red"} > {(item.regionNe + item.regionSe + item.regionSw)} left in stock </div>
-                        <Link to={`/products/${item.serialNumber}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link>
+                        {/*<Link to={`/products/${item.serialNumber}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link> */}
+                        {(item.regionNe + item.regionSe + item.regionSw)>0 ?
+                           <Button variant="outline-success" className="card-btn" onClick={() => prepForCart(item)} >ADD TO CART</Button>
+                        : null}
                      </div>
                </Card>
             </div> 
