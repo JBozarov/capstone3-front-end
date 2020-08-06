@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 import { Carousel, Breadcrumb } from 'react-bootstrap'
-import { connect } from 'react-redux'
+
 import { addToCart } from '../../redux/reducers/cartReducer'
 import { toast, Flip } from 'react-toastify'
 import { Link, withRouter } from 'react-router-dom'
@@ -73,7 +73,7 @@ const dispatch = useDispatch();
             </div>
             <hr/>
                <p>Product description</p>
-               <h2>{item.description}</h2>
+               <p>{item.description}</p>
             <hr/>
                <p>Product category</p>
                <h2>{item.category}</h2>
