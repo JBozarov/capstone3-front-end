@@ -18,11 +18,11 @@
 
 .product-container-box{
    width: 350px;
-   height: 550px;
+   height: 600px;
    padding: 0;
    margin: 1px 1px;
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    justify-content: space-between;
    flex-wrap: wrap;
    align-items: center;

@@ -26,15 +26,15 @@ const Products = (props) => {
          <div className='product-container'  >
          {data.length>0 && data.map((item, i) => (
             <div key={i} className="product-container-box" >
-            <Card style={{ width: '25rem', height: '40rem', border: 'none' }}>
+            <Card style={{ width: '25rem', height: '30em', border: 'none' }}>
                   <img src={item.imageUrl} className="card-image" />
                      <div className='card-body' >
-                        <Card.Text><h3>{item.productName}</h3></Card.Text>
-                        <p>Price: <b>${item.price}</b></p>
-                        <p>Serial number: <b>{item.serialNumber}</b></p>
-                        <p>Description: <b>{item.description} </b></p>
-                        <p>Category: {item.category}</p>
-                        <div className={item.quantity>10 ? "card-quantity-green" : "card-quantity-red"} > {item.quantity} left in stock </div>
+                     <Link to={`/products/${item.serialNumber}`} ><Card.Text><h4>{item.productName}</h4></Card.Text></Link>
+                        Price: <b>${item.price}</b>
+                        Serial number: <b>{item.serialNumber}</b>
+                        Description: <b>{item.description} </b>
+                        Category: {item.category}
+                        <div className={(item.regionNe + item.regionSe + item.regionSw)>10 ? "card-quantity-green" : "card-quantity-red"} > {(item.regionNe + item.regionSe + item.regionSw)} left in stock </div>
                         <Link to={`/products/${item.serialNumber}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link>
                      </div>
                </Card>

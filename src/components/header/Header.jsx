@@ -31,11 +31,12 @@ const Header = props => {
                   <div className="upper-box" >
                     <h5>Contact Us</h5>
                      {props.location.pathname === '/admin' ? <Link onClick={toggleAdmin} to='/'><h5>Log out</h5></Link> : <Link onClick={toggleAdmin} to='/admin'><h5>Admin login</h5></Link> }
-                     { adminMode === '/admin' ? 
-                     <div className={qtyCount ? 'cart-has-item' : null}>
-                        <Link to='/cart'><h5>Cart({qtyCount})</h5> </Link>
-                    </div> :
-                     <h5></h5> }
+                     
+                     { adminMode ? 
+                        <div className={qtyCount ? 'cart-has-item' : null}>
+                           <Link to='/cart'><h5>Cart({qtyCount})</h5> </Link>
+                       </div> :
+                        <h5></h5> }
                   </div>
                   { adminMode ? 
 

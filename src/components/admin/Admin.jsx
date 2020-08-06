@@ -20,7 +20,6 @@ const Admin = () => {
    const [isAddProductModelOpen, setIsAddProductModelOpen] = useState(false);
 
    const [productName, setProductName] = useState('')
-   const [serialNumber, setSerialNumber] = useState('')
    const [description, setDescription] = useState('')
    const [price, setPrice] = useState(0)
    const [quantity, setQuantity] = useState(0)
@@ -31,18 +30,24 @@ const Admin = () => {
 =======
    const [image_url, setImageUrl] = useState('')
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4d8c0b7372a5ec3c2564f03ccbecfe92d4d55014
    const url = "http://localhost:8080/products"; 
 =======
    //const url = "http://localhost:8080/products"; 
    const url = "http://34.221.195.5/products"; 
 >>>>>>> de194bdfde485e4022e9dcefc9dc81a42dd8586c
+=======
+   const url = "http://localhost:8080/products"; 
+   // const url = "http://34.221.195.5/products"; 
+>>>>>>> 7ab85c6e870865ff9cc8bf75d782e5867b867bd0
 
    useEffect(() => {
       dispatch(getAllData());
    }, []);
 
 
+<<<<<<< HEAD
    // Edit button 
    const handleEdit = ind => {
       let temp = products[ind]
@@ -67,6 +72,8 @@ const Admin = () => {
    }
 =======
 >>>>>>> de194bdfde485e4022e9dcefc9dc81a42dd8586c
+=======
+>>>>>>> 7ab85c6e870865ff9cc8bf75d782e5867b867bd0
 
    // Post request
    const addProduct = () => {
@@ -103,7 +110,6 @@ const Admin = () => {
       })
 >>>>>>> 4d8c0b7372a5ec3c2564f03ccbecfe92d4d55014
    }
-
 
 
    return (
@@ -146,17 +152,13 @@ const Admin = () => {
       <p></p>
 >>>>>>> 6afca1c80a8fdf87c8b62acc5e905f408dc1f270
       <div className='admin-component'>
-
-
       <Modal isOpen={isAddProductModelOpen} style={modelAddProductStyle}>
          <h2>Adding new product to inventory</h2>
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Product name" onChange={e => setProductName(e.target.value)} /></p>
          <p className='modal-line' ><input type='textarea' className='medal-input' placeholder="Description" onChange={e => setDescription(e.target.value)} /></p>
          <p className='modal-line' ><input type='number' className='medal-input' placeholder="Product price" onChange={e => setPrice(e.target.value)}/></p>
-         {/*<p className='modal-line' ><input type='number' min="1" className='medal-input' placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/></p> */}
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Category" onChange={e => setCategory(e.target.value)} /></p>
          <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" onChange={e => setImageUrl(e.target.value)} /></p>
-         {/* <p className='modal-line' ><input type='text' className='medal-input' placeholder="Image url" /></p> */}
          <p className='modal-line' >
             <Button variant="outline-dark" size="lg" onClick={() => addProduct()} >SUBMIT</Button>{' '}
             <Button variant="outline-dark" size="lg" onClick={() => setIsAddProductModelOpen(false)} >CANCEL</Button>{' '}
@@ -176,7 +178,6 @@ const Admin = () => {
                   <th>Qty SE</th>
                   <th>Qty SW</th>
                   <th>Category</th>
-                  {/*<th>Image</th> */}
                  
                </tr>
 <<<<<<< HEAD
@@ -209,9 +210,6 @@ const Admin = () => {
                   <td>{item.regionSe}</td>
                   <td>{item.regionSw}</td>
                   <td>{item.category}</td>
-                {/*  <td><img src={item.imageUrl} className="admin-cart-image" /></td> */}
-                  
-                {/*  <td><Button variant="outline-success" className="admin-card-btn" onClick={() => handleDelete(i)} >Delete</Button></td> */}
                </tr> 
                ))}  
             <tfoot><td colSpan='8'></td></tfoot>
@@ -221,7 +219,6 @@ const Admin = () => {
       </div>
    )
 }
-
 
 
 export default withRouter(Admin);

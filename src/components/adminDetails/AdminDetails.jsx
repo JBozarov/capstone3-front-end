@@ -27,6 +27,8 @@ const AdminDetails = props => {
    const [regionNe, setRegionNe] = useState(0)
    const [regionSe, setRegionSe] = useState(0)
    const [regionSw, setRegionSw] = useState(0)
+   const [tempQty, setTempQty] = useState(0);
+   const [tempRegion, setTempRegion] = useState("")
       
 
 
@@ -38,8 +40,8 @@ const AdminDetails = props => {
          quantity, 
          category
       }
-      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
-      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      // axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
@@ -48,9 +50,9 @@ const AdminDetails = props => {
    }
 
    const handleClick = val => {
-      if (val === "Northeast") setRegionNe(parseInt(quantity))
-      else if (val === "Southeast") setRegionSe(parseInt(quantity))
-      else if (val === "Southwest") setRegionSw(parseInt(quantity))
+      // if (val === "Northeast") setRegionNe(parseInt(quantity))
+      // else if (val === "Southeast") setRegionSe(parseInt(quantity))
+      // else if (val === "Southwest") setRegionSw(parseInt(quantity))
    }
 
    const submit = () => {
@@ -60,8 +62,8 @@ const AdminDetails = props => {
          regionSw
       }
       console.log('body is => ', body)
-      //axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
-      axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
+      axios.put(`http://localhost:8080/products/quantity/${serialNumber}`, body)
+      // axios.put(`http://34.221.195.5/products/quantity/${serialNumber}`, body)
       .then(res => {
          setIsOpen(false)
          props.history.push('/admin')
