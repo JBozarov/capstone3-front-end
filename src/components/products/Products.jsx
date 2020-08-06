@@ -3,13 +3,34 @@ import { Breadcrumb, Card, Button } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { BsArrow90DegLeft } from 'react-icons/bs'
 import './Products.css'
-import { useSelector, connect } from 'react-redux'
+import { useSelector, connect, useDispatch } from 'react-redux'
+import { addToCart } from '../../redux/reducers/cartReducer'
+import { toast, Flip } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure();
+
 
 const Products = (props) => {
-
+   // const [totalItems, setTotalItems] = useState(0)
    //const localData = useSelector(state => state.dataReducer)
    const data = useSelector(state => state.dataReducer)
    console.log(data)
+   const dispatch = useDispatch();
+
+   const prepForCart = (item) => {
+      let addedItem = { 
+         ...item, cartQuantity: 1, totalPrice: item.price
+      }
+      console.log(addedItem)
+      dispatch(addToCart(addedItem));
+      toast.success(`${item.productName} is added to your cart`, {
+         closeButton: false,
+         transition: Flip,
+         className: 'toastify',
+         position: "top-center",
+         autoClose: 1500,
+      });
+    }
 
    
 
@@ -36,6 +57,10 @@ const Products = (props) => {
                         Category: {item.category}
                         <div className={(item.regionNe + item.regionSe + item.regionSw)>10 ? "card-quantity-green" : "card-quantity-red"} > {(item.regionNe + item.regionSe + item.regionSw)} left in stock </div>
                         <Link to={`/products/${item.serialNumber}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link>
+                        {(item.regionNe + item.regionSe + item.regionSw)>0 ? 
+                           <button className="add-to-cart-btn" onClick={ () => prepForCart(item) } >ADD TO CART</button>
+                           : <h2>SOLD OUT</h2>
+                        }
                      </div>
                </Card>
             </div> 
