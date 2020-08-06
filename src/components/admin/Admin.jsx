@@ -21,8 +21,8 @@ const Admin = () => {
    const [quantity, setQuantity] = useState(0)
    const [category, setCategory] = useState('')
    const [image_url, setImageUrl] = useState('')
-   //const url = "http://localhost:8080/products"; 
-   const url = "http://34.221.195.5/products"; 
+   const url = "http://localhost:8080/products"; 
+   // const url = "http://34.221.195.5/products"; 
 
    useEffect (() => {
       dispatch(getAllData());
