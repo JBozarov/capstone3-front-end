@@ -100,9 +100,14 @@ const Cart = () => {
                   <p> QTY: {item.cartQuantity} </p>
                   <p style={{fontSize: '10px', color: (item.regionNe + item.regionSe + item.regionSw)>10 ? 'black' : 'red'}} > ( {(item.regionNe + item.regionSe + item.regionSw)} left in stock )</p>
                   <p className='qty-and-update' >
+<<<<<<< HEAD
                      {/*<label>Qty: <select>{[...Array(50)].map((e, i)=><option value={i+1} onChange={e => handleChange(e, item.id)} key={i}>{i+1}</option>)}</select></label>*/}
                      {/* <input type='number' value={index === tempIndex ? qty : 1} min='1' className='quantity-input' onChange={e => handleChange(e, index)} /> */}
                      <Button variant="outline-dark" size="sm" onClick={() => updateItem(index)} >UPDATE</Button>{' '}
+=======
+                     {/*<input type='number' value={index === tempIndex ? qty : 1} min='1' className='quantity-input' onChange={e => handleChange(e, index)} />
+                     <Button variant="outline-dark" size="sm" onClick={() => updateItem(index)} >UPDATE</Button>{' '} */}
+>>>>>>> 24dc7eb9eeda99bd2e5184293d59c9dec597e067
                      <Button variant="outline-dark" size="sm" onClick={() => remove(index)} >REMOVE</Button>{' '}
                   </p>
                </div>
@@ -113,7 +118,7 @@ const Cart = () => {
                 </div>  }
          </div>
 
-         <div className='payment' >
+         {cart.length>0 && <div className='payment' >
             <div className='payment-box-1' >CHECKOUT <span> <BsArrowRight size={30} ></BsArrowRight> </span> </div>
             <div className='payment-box-1' style={{backgroundColor: 'white', color: 'black'}} > 
                <img src={paypal} className='paypal-img' /> 
@@ -136,7 +141,7 @@ const Cart = () => {
                // opened={onOpened} closed={onClosed}
                >
             </StripeCheckout>
-         </div>
+         </div>}
       </div>
    )
 }

@@ -11,6 +11,7 @@ toast.configure();
 
 
 const Products = (props) => {
+<<<<<<< HEAD
    // const [totalItems, setTotalItems] = useState(0)
    //const localData = useSelector(state => state.dataReducer)
    const data = useSelector(state => state.dataReducer)
@@ -31,7 +32,25 @@ const Products = (props) => {
          autoClose: 1500,
       });
     }
+=======
+   const data = useSelector(state => state.dataReducer)
+   const dispatch = useDispatch();
 
+>>>>>>> 24dc7eb9eeda99bd2e5184293d59c9dec597e067
+
+   const prepForCart = item => {
+      let addedItem = { 
+         ...item, cartQuantity: 1, totalPrice: item.price
+      }
+      dispatch(addToCart(addedItem));
+      toast.success(`${item.productName} is added to your cart`, {
+         closeButton: false,
+         transition: Flip,
+         className: 'toastify',
+         position: "top-center",
+         autoClose: 1500,
+      });
+    }
    
 
    return (
@@ -47,6 +66,7 @@ const Products = (props) => {
          <div className='product-container'  >
          {data.length>0 && data.map((item, i) => (
             <div key={i} className="product-container-box" >
+<<<<<<< HEAD
             <Card style={{ width: '25rem', height: '30em', border: 'none' }}>
                   <img src={item.imageUrl} className="card-image" />
                      <div className='card-body' >
@@ -61,6 +81,21 @@ const Products = (props) => {
                            <button className="add-to-cart-btn" onClick={ () => prepForCart(item) } >ADD TO CART</button>
                            : <h2>SOLD OUT</h2>
                         }
+=======
+            <Card style={{ width: '25rem', height: '40rem', border: 'none' }}>
+            <Link to={`/products/${item.serialNumber}`}> <img src={item.imageUrl} className="card-image" /></Link>
+                     <div className='card-body' >
+                        <Card.Text><h3>{item.productName}</h3></Card.Text>
+                        <p>Price: <b>${item.price}</b></p>
+                        <p>Serial number: <b>{item.serialNumber}</b></p>
+                        {/*<p>Description: <b>{item.description} </b></p> */}
+                        <p>Category: {item.category}</p>
+                        <div className={(item.regionNe + item.regionSe + item.regionSw)>10 ? "card-quantity-green" : "card-quantity-red"} > {(item.regionNe + item.regionSe + item.regionSw)} left in stock </div>
+                        {/*<Link to={`/products/${item.serialNumber}`} style={{width: '100%'}} > <Button variant="outline-success" className="card-btn" >SEE DETAILS</Button> </Link> */}
+                        {(item.regionNe + item.regionSe + item.regionSw)>0 ?
+                           <Button variant="outline-success" className="card-btn" onClick={() => prepForCart(item)} >ADD TO CART</Button>
+                        : null}
+>>>>>>> 24dc7eb9eeda99bd2e5184293d59c9dec597e067
                      </div>
                </Card>
             </div> 

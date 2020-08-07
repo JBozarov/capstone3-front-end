@@ -87,10 +87,10 @@ const Admin = () => {
          {products.length>0 && products.map((item, i) => (
                <tr key={i} className="" >
                   <td>{i+1}</td>
-                  <td> <Link to={`/admin/${item.serialNumber}`} style={{width: '100%'}} > {item.productName}</Link></td>
-                  <td>{item.description}</td>
-                  <td>{item.serialNumber}</td>
-                  <td>{item.price}</td>
+                  <td> <Link to={`/admin/${item.serialNumber}`} style={{width: '100%', fontSize: '15px'}} > {item.productName}</Link></td>
+                  <td><p style={{fontSize: '12px', width: '300px'}}  >{item.description.slice(0, 100)}...</p></td>
+                  <td style={{fontSize: '12px'}}  >{item.serialNumber}</td>
+                  <td style={{fontSize: '15px'}}  >${item.price}</td>
                   <td>{item.regionNe}</td>
                   <td>{item.regionSe}</td>
                   <td>{item.regionSw}</td>

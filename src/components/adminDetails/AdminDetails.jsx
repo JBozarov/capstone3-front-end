@@ -34,14 +34,21 @@ const AdminDetails = props => {
 
    const updateProduct = () => {
       const body = {
+         ...oneProduct[0],
          productName: oneProduct[0].productName,
          description, 
          price, 
          quantity, 
          category
       }
+<<<<<<< HEAD
       axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
       // axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+=======
+      console.log('body ', body)
+      //axios.put(`http://localhost:8080/products/${props.match.params.serialNumber}`, body)
+      axios.put(`http://34.221.195.5/products/${props.match.params.serialNumber}`, body)
+>>>>>>> 24dc7eb9eeda99bd2e5184293d59c9dec597e067
       .then(res => {
          props.history.push('/admin')
          setIsAdminDetailsModelOpen(false)
@@ -80,7 +87,7 @@ const AdminDetails = props => {
 
    return (
       <div className="admin-details" >
-      <div className='go-back-btn' > <Link to={`/admin`}><MdKeyboardBackspace size={48} ></MdKeyboardBackspace></Link></div>
+      <div className='go-back-btn' style={{float: 'left'}} > <Link to={`/admin`}><MdKeyboardBackspace size={48} ></MdKeyboardBackspace>Back</Link></div>
          <Modal isOpen={isAdminDetailsModelOpen} style={modelAdminDetails}>
             <h2>Updating {oneProduct[0].productName} </h2>
             <p className='modal-line' > <h2>Description</h2> <input type='textarea' className='medal-input' value={description} onChange={e => setDescription(e.target.value)} /></p>
@@ -118,14 +125,20 @@ const AdminDetails = props => {
          {oneProduct.length>0 && oneProduct.map(product => (
             <div key={product.serialNumber} >
                <Card style={{ width: '40rem' }}>
-                  <Card.Img variant="top" src={product.imageUrl} />
+                  <img variant="top" style={{height: '350px', width: '400px', margin: 'auto'}} src={product.imageUrl} />
                   <Card.Title> <h1>{product.productName} </h1></Card.Title>
-                  <Card.Text> <h5 > Description: {product.description} </h5> </Card.Text>
+                  <Card.Text> <h5 > <b>Description: </b>{product.description} </h5> </Card.Text>
                   <ListGroup className="list-group-flush">
                      <ListGroupItem><h4> Serial Number: {product.serialNumber} </h4></ListGroupItem>
                      <ListGroupItem><h3> Price: ${product.price} </h3></ListGroupItem>
                      <ListGroupItem><h3> <h3> Category: {product.category} </h3> </h3></ListGroupItem>
+<<<<<<< HEAD
                      <ListGroupItem><h3> Quantity: {product.quantity} </h3></ListGroupItem>
+=======
+                     <ListGroupItem><h3> Northeast quantity: {product.regionNe} </h3></ListGroupItem>
+                     <ListGroupItem><h3> Southeast quantity: {product.regionSe} </h3></ListGroupItem>
+                     <ListGroupItem><h3> Southwest quantity: {product.regionSw} </h3></ListGroupItem>
+>>>>>>> 24dc7eb9eeda99bd2e5184293d59c9dec597e067
                         <ListGroupItem>
                         <Button variant="outline-secondary" onClick={()=>setIsAdminDetailsModelOpen(true)} >Update Product</Button>{' '}
                         <Button variant="outline-secondary" onClick={()=>setIsOpen(true)} >Add Quantity</Button>{' '}
