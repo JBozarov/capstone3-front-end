@@ -53,6 +53,9 @@
     3. Executing the Plan
 </h2>
 
+*API Documentation -
+https://app.swaggerhub.com/apis/Too-Agile-Ninjas/Somerton/0.1
+
 *We decided that we should try to imitate an experienced development team and attempt to work apart while staying in regular contact to stay on the same page. We immediately ran into a merge conflict. As our first user story was refined to the back end, we decided that we had to mob program, at least until we had more diverse requirements
 
 *The next problem was deployment. This took us a while to solve and then we had multiple blockers during the process like installing Java on the server for the deployed Spring Boot and difficulty connecting the deployed React to the deployed Spring application.
