@@ -61,6 +61,8 @@
 
 *We worked 14 hours, every day, while also finishing up our last assignment and taking the IKM tests. It was exhausting and we had plenty of frustrating blockers, but every member of the team was supported by the rest of the team and we plugged away at all our blockers
 
+*We had great teamwork. This was the key to our success. We cohesively operated as a unit and collaborated to solve all our blockers.
+
 *Overall, it was a very rewarding experience. We had a lot of fun working together and shared a lot of laughs. We also took great pride in our work and we are proud to demonstrate what we were able to accomplish as a team.
 
 <h2>
